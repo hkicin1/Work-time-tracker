@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="222.0" prefWidth="377.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.HelpAboutController">
+<GridPane prefHeight="222.0" prefWidth="477.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.HelpAboutController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" />
       <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
@@ -20,14 +20,13 @@
       <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <ImageView fx:id="helpAdminEmployee" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="0" GridPane.columnSpan="2">
-            <image>
-                <Image url="@../img/helpAdminEmployee.png" />
-            </image></ImageView>
-      <Label fx:id="lblHelpAbout" GridPane.halignment="CENTER">
+      <Label fx:id="lblHelpAbout" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
          <font>
             <Font size="14.0" />
          </font>
+         <GridPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </GridPane.margin>
       </Label>
       <Button fx:id="btnClose1" mnemonicParsing="false" onAction="#exitAction" prefHeight="28.0" prefWidth="46.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <graphic>

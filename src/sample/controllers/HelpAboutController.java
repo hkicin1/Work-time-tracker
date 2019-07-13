@@ -28,8 +28,13 @@ public class HelpAboutController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if(type == null) return;
         if(type.equals(ContentType.HELP)){
-            lblHelpAbout.setVisible(false);
-            helpAdminEmployee.setVisible(true);
+            //lblHelpAbout.setVisible(false);
+           // helpAdminEmployee.setVisible(true);
+            lblHelpAbout.setText("Admin: Click on Admin button. Enter your username and\n" +
+                    "password and you will have access to employee work time reports,\n" +
+                    "and you will be able to register new employee or delete another.\n\n" +
+                    "Employee: Click on Employee button. Enter your username and\n" +
+                    "password and you will be able to note your work time.");
         }else {
             lblHelpAbout.setText("This application trakes employee work time. \n" +
                     "                 Author: Haris Kičin\n");
