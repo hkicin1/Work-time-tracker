@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="222.0" prefWidth="377.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.HelpAboutController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <ImageView fx:id="helpAdminEmployee" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="0" GridPane.columnSpan="2">
+            <image>
+                <Image url="@../img/helpAdminEmployee.png" />
+            </image></ImageView>
+      <Label fx:id="lblHelpAbout" GridPane.halignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnClose1" mnemonicParsing="false" onAction="#exitAction" prefHeight="28.0" prefWidth="46.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/application-exit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</GridPane>
