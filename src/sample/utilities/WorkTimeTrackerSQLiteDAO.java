@@ -172,6 +172,21 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
         @Override
     public void addAdmin(Admin a) {
+
+            try {
+                ResultSet rs = null;
+                rs = getNewAdminId.executeQuery();
+                int id = 1;
+                if (rs.next()) id = rs.getInt(1);
+                a.setId(id);
+
+                addAdmin.setInt(1, a.getId());
+                addAdmin.setInt(5, a.getPerson().getId());
+                addAdmin.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
     }
 
     @Override
