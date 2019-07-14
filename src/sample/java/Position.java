@@ -6,6 +6,9 @@ public class Position {
     private int id;
     private String name;
 
+    public Position() {
+    }
+
     public int getId() {
         return id;
     }
