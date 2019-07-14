@@ -1,16 +1,18 @@
 package sample.models;
 
+import javafx.fxml.Initializable;
+
 public class Person {
     private int id;
     private String name;
     private String surname;
     private String address;
-    private String postalNumber;
+    private Integer postalNumber;
     private String city;
     private String userName;
     private String password;
 
-    public Person(int id, String name, String surname, String address, String postalNumber, String city, String userName, String password) {
+    public Person(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -56,11 +58,11 @@ public class Person {
         this.address = address;
     }
 
-    public String getPostalNumber() {
+    public Integer getPostalNumber() {
         return postalNumber;
     }
 
-    public void setPostalNumber(String postalNumber) {
+    public void setPostalNumber(Integer postalNumber) {
         this.postalNumber = postalNumber;
     }
 

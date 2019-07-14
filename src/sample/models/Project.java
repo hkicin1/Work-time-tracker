@@ -1,12 +1,12 @@
 package sample.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Project {
     private int id;
     private String name;
-    private Date startDate;
-    private Date finishDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
     private int activity;
 
     public Project() {
@@ -28,19 +28,19 @@ public class Project {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getFinishDate() {
+    public LocalDate getFinishDate() {
         return finishDate;
     }
 
-    public void setFinishDate(Date finishDate) {
+    public void setFinishDate(LocalDate finishDate) {
         this.finishDate = finishDate;
     }
 
@@ -52,7 +52,7 @@ public class Project {
         this.activity = activity;
     }
 
-    public Project(int id, String name, Date startDate, Date finishDate, int activity) {
+    public Project(int id, String name, LocalDate startDate, LocalDate finishDate, int activity) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;

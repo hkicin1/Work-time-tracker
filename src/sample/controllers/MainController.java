@@ -14,10 +14,10 @@ import java.io.IOException;
 public class MainController {
 
 
-    public Button btnClose;
+    public Button btnExit;
 
     public void exitAction(ActionEvent actionEvent) {
-        Stage stage = (Stage) btnClose.getScene().getWindow();
+        Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
     }
 

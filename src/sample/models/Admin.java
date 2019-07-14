@@ -20,13 +20,13 @@ public class Admin extends Person {
         this.person = person;
     }
 
-    public Admin(int id, String name, String surname, String address, String postalNumber, String city, String userName, String password, int adminId, Person person) {
+    public Admin(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password, int adminId, Person person) {
         super(id, name, surname, address, postalNumber, city, userName, password);
         this.adminId = adminId;
         this.person = person;
     }
 
-    public Admin(int id, String name, String surname, String address, String postalNumber, String city, String userName, String password) {
+    public Admin(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password) {
         super(id, name, surname, address, postalNumber, city, userName, password);
     }
 }

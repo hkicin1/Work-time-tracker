@@ -5,15 +5,17 @@ import sample.models.Employee;
 import sample.models.Person;
 import sample.models.Project;
 
+import java.util.List;
+
 public interface WorkTimeTrackerDAO {
 
-    Person addPerson(Person p);
+    void addPerson(Person p);
 
-    Employee addEmployee(Employee e);
+    void addEmployee(Employee e);
 
-    Project addProject(Project project);
+    void addProject(Project project);
 
-    Admin addAdmin(Admin a);
+    void addAdmin(Admin a);
 
     Admin getAdminById(long id);
 
