@@ -1,0 +1,18 @@
+.poljeIspravno {
+   -fx-control-inner-background: greenyellow;
+}
+.poljeNijeIspravno {
+   -fx-control-inner-background: lightpink;
+}
+
+#btnAdd {
+    -fx-graphic: url("/img/list-add.png");
+}
+
+#btnDelete {
+    -fx-graphic: url("/img/edit-delete.png");
+}
+
+#btnEnd {
+    -fx-graphic: url("/img/application-exit.png");
+}

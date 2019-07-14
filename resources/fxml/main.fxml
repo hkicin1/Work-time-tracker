@@ -38,12 +38,12 @@
             </Label>
             <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="174.0" prefWidth="261.0">
               <buttons>
-                  <Button fx:id="btnLoginAdmin" mnemonicParsing="false" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Admin">
+                  <Button fx:id="btnLoginAdmin" mnemonicParsing="true" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="A_dmin">
                       <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Button>
-                   <Button fx:id="btnLoginRadnik" mnemonicParsing="false" prefHeight="42.0" prefWidth="117.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Employee">
+                   <Button fx:id="btnLoginRadnik" mnemonicParsing="true" prefHeight="42.0" prefWidth="117.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Employee">
                        <font>
                            <Font name="System Bold" size="19.0" />
                        </font>
@@ -54,9 +54,9 @@
       </HBox>
       <ButtonBar prefHeight="45.0" prefWidth="465.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
         <buttons>
-          <Button fx:id="btnAbout" mnemonicParsing="false" onAction="#aboutAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="About" />
-            <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#helpAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Help" />
-            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#exitAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="End" />
+          <Button fx:id="btnAbout" mnemonicParsing="true" onAction="#aboutAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="A_bout" />
+            <Button fx:id="btnHelp" mnemonicParsing="true" onAction="#helpAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Help" />
+            <Button fx:id="btnExit" mnemonicParsing="true" onAction="#exitAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="E_xit" />
         </buttons>
          <GridPane.margin>
             <Insets bottom="30.0" />
