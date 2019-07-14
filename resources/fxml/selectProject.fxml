@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10.0" prefHeight="326.0" prefWidth="286.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/style.css" />
+    </stylesheets>
+    <columnConstraints>
+        <ColumnConstraints maxWidth="200" minWidth="200" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <ListView fx:id="listKorisnici" prefHeight="200.0" prefWidth="190.0" GridPane.halignment="CENTER">
+            <GridPane.margin>
+                <Insets />
+            </GridPane.margin></ListView>
+
+        <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="469.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+            <buttons>
+                <Button fx:id="btnAdd" mnemonicParsing="true" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Start" />
+                <Button fx:id="btnEnd" mnemonicParsing="true" onAction="#exitAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="E_xit" />
+            </buttons>
+            <GridPane.margin>
+                <Insets bottom="10.0" right="10.0" top="20.0" />
+            </GridPane.margin>
+        </ButtonBar>
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</GridPane>
