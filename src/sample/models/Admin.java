@@ -26,6 +26,11 @@ public class Admin extends Person {
         this.person = person;
     }
 
+    public Admin(int adminId, Person person) {
+        this.adminId = adminId;
+        this.person = person;
+    }
+
     public Admin(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password) {
         super(id, name, surname, address, postalNumber, city, userName, password);
     }

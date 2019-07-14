@@ -24,6 +24,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
     private static PreparedStatement deletePerson, deleteAdmin, deleteEmployee;
     private static PreparedStatement getNewPersonId, getNewAdminId, getNewEmployeeId, getNewProjectId;
     private static PreparedStatement getEmployeeWorkTime, getProjectWorkTimeForEmployee;
+    private static PreparedStatement getPersonByUsername;
 
     WorkTimeTrackerSQLiteDAO(){
         try {
@@ -61,6 +62,8 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         getNewAdminId = connection.prepareStatement("select MAX(id) + 1 FROM admin");
         getNewEmployeeId = connection.prepareStatement("select MAX(id) + 1 FROM employee");
         getNewProjectId = connection.prepareStatement("select MAX(id) + 1 FROM project");
+
+        getPersonByUsername = connection.prepareStatement("select * from person where person.username = ?");
 
     }
 
@@ -193,6 +196,40 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         if(r.next()) {
             return new Person(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
                     r.getInt(5), r.getString(6), r.getString(7), r.getString(8));
+        }
+        return null;
+    }
+
+    public Person getPersonByUsername(String username) {
+        try {
+
+            getPersonByUsername.setString(1,username);
+            ResultSet r = getPersonByUsername.executeQuery();
+            int id = r.getInt(1);
+            Person person = new Person(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
+                    r.getInt(5), r.getString(6), r.getString(7), r.getString(8));
+
+            getPersonByUsername.setString(1,username);
+            ResultSet rs = getPersonByUsername.executeQuery();
+            if(rs.next()){
+                Person p = getPersonById(rs.getInt(1));
+                if(p != null) {
+                    return new Admin(rs.getInt(1), person);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Person getPersonById(long id) {
+        try {
+            PreparedStatement preparedStatement = null;
+            preparedStatement = connection.prepareStatement("select * from person where id = ?");
+            return getPerson(preparedStatement);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
