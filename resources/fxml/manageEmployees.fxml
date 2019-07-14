@@ -88,7 +88,7 @@
             <buttons>
                 <Button fx:id="btnAdd" mnemonicParsing="true" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Add" />
                 <Button fx:id="btnDelete" mnemonicParsing="true" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Delete" />
-                <Button fx:id="btnEnd" mnemonicParsing="true" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_End" />
+                <Button fx:id="btnEnd" mnemonicParsing="true" onAction="#exitAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="E_xit" />
             </buttons>
          <GridPane.margin>
             <Insets bottom="10.0" right="10.0" top="5.0" />
