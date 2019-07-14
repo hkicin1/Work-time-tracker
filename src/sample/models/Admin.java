@@ -1,4 +1,4 @@
-package sample.java;
+package sample.models;
 
 public class Admin extends Person {
     private int adminId;

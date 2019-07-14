@@ -18,6 +18,8 @@ public class LoginController implements Initializable {
     public void loginAction(ActionEvent actionEvent) {
         username = txtUsername.getText();
         password = pwdPassword.getText();
+
+
     }
 
     @Override

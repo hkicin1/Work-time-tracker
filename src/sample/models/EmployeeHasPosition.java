@@ -1,4 +1,4 @@
-package sample.java;
+package sample.models;
 
 public class EmployeeHasPosition {
     private Employee employeeId;
