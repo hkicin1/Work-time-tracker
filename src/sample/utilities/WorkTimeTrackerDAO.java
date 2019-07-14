@@ -5,6 +5,7 @@ import sample.models.Employee;
 import sample.models.Person;
 import sample.models.Project;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public interface WorkTimeTrackerDAO {
@@ -16,9 +17,5 @@ public interface WorkTimeTrackerDAO {
     void addProject(Project project);
 
     void addAdmin(Admin a);
-
-    Admin getAdminById(long id);
-
-    Person getPersonById(long id);
 
 }

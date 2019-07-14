@@ -186,16 +186,14 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
     }
 
-    @Override
-    public Admin getAdminById(long id) {
-        return null;
-    }
-
-    @Override
-    public Person getPersonById(long id) {
+    public Person getPerson(PreparedStatement preparedStatement) throws SQLException {
+        ResultSet r = preparedStatement.executeQuery();
+        if(r.next()) {
+            return new Person(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
+                    r.getInt(5), r.getString(6), r.getString(7), r.getString(8));
+        }
         return null;
     }
 
