@@ -64,7 +64,6 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void employeeAction(ActionEvent actionEvent) {
