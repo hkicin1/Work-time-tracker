@@ -1,6 +1,5 @@
 package sample.utilities;
 
-import sample.models.Admin;
 import sample.models.Person;
 
 public class WorkTimeTracker {

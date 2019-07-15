@@ -16,7 +16,6 @@ import java.util.Scanner;
 
 public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
-    private static final String URL = "jdbc:sqlite:work_time_tracker.db";
     private static Connection connection;
 
     private static PreparedStatement addPerson, addAdmin, addEmployee, addProject;
@@ -67,12 +66,11 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
     }
 
-
+    
     private void initialiseDatabase() {
         String sql="";
         java.net.URL x = getClass().getResource("work_time_tracker.db.sql");
-        FileReader fileReader =
-                null;
+        FileReader fileReader = null;
         try {
             fileReader = new FileReader(x.getFile());
 

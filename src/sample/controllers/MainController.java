@@ -11,6 +11,8 @@ import sample.enums.ContentType;
 
 import java.io.IOException;
 
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+
 public class MainController {
 
 
@@ -29,7 +31,7 @@ public class MainController {
         showHelpOrAbout("About", ContentType.ABOUT);
     }
 
-    private void showHelpOrAbout(String title, ContentType type){
+    private void showHelpOrAbout(String title, ContentType type) {
         Stage stage = new Stage();
         Parent root = null;
         try {
@@ -45,5 +47,40 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void adminAction(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = null;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            root = loader.load();
+            stage.setTitle("Login");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void employeeAction(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            Parent root = null;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            root = loader.load();
+            stage.setTitle("Login");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

@@ -38,12 +38,12 @@
             </Label>
             <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="174.0" prefWidth="261.0">
               <buttons>
-                  <Button fx:id="btnLoginAdmin" mnemonicParsing="true" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="A_dmin">
+                  <Button fx:id="btnLoginAdmin" mnemonicParsing="true" onAction="#adminAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="A_dmin">
                       <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Button>
-                   <Button fx:id="btnLoginRadnik" mnemonicParsing="true" prefHeight="42.0" prefWidth="117.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Employee">
+                   <Button fx:id="btnLoginRadnik" mnemonicParsing="true" onAction="#employeeAction" prefHeight="42.0" prefWidth="117.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Employee">
                        <font>
                            <Font name="System Bold" size="19.0" />
                        </font>
