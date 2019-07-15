@@ -1,5 +1,6 @@
 package sample.utilities;
 
+import org.sqlite.JDBC;
 import sample.models.Admin;
 import sample.models.Employee;
 import sample.models.Person;
@@ -9,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -27,7 +27,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
     WorkTimeTrackerSQLiteDAO(){
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:work_time_tracker.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:resources/work_time_tracker.db");
             initializeStatements();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -40,6 +40,17 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         }
     }
 
+    static {
+        try {
+            DriverManager.registerDriver(new JDBC());
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     private void initializeStatements() throws SQLException {
         addPerson = connection.prepareStatement("insert into person values(?,?,?,?,?,?,?,?)");
         addAdmin = connection.prepareStatement("insert into admin values(?,?)");
@@ -49,7 +60,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         getPersonById = connection.prepareStatement("select * from person where id = ?");
         getAdminById = connection.prepareStatement("select * from admin where id = ?");
         getEmployeeById = connection.prepareStatement("select * from person, employee where person.id = employee.id and person.id = ?");
-        getEmployeeWorkTime = connection.prepareStatement("select work_hours from work_hours,employee where work_hours.employee_id = employee.id");
+        getEmployeeWorkTime = connection.prepareStatement("select work_hours from work_hours w,employee e where w.employee_id = e.id");
         getProjectWorkTimeForEmployee = connection.prepareStatement("select work_hours from project_work_hours,employee,project " +
                 "where work_hours.employee_id = employee.id and project.id = project_work_hours.id");
 
@@ -69,7 +80,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
     
     private void initialiseDatabase() {
         String sql="";
-        java.net.URL x = getClass().getResource("work_time_tracker.db.sql");
+        java.net.URL x = getClass().getResource("resources/work_time_tracker.db.sql");
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(x.getFile());
