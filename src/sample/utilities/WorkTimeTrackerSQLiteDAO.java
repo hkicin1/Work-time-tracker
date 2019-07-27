@@ -27,7 +27,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
     WorkTimeTrackerSQLiteDAO(){
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:resources/work_time_tracker.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:work_time_tracker.db");
             initializeStatements();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -80,7 +80,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
     
     private void initialiseDatabase() {
         String sql="";
-        java.net.URL x = getClass().getResource("resources/work_time_tracker.db.sql");
+        java.net.URL x = getClass().getResource("../work_time_tracker.db.sql");
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(x.getFile());
