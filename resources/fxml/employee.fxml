@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.EmployeeController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -27,11 +27,11 @@
          <GridPane.margin>
             <Insets right="30.0" />
          </GridPane.margin></Label>
-        <Button mnemonicParsing="false" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Select project" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+        <Button fx:id="btnSelectProject" mnemonicParsing="false" onAction="#selectProjectAction" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Select project" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin></Button>
-        <Button mnemonicParsing="false" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Start work time" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+        <Button fx:id="btnStartWorkTime" mnemonicParsing="false" onAction="#startWorkTimeAction" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Start work time" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
         <Button mnemonicParsing="false" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="My work hours report" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
 
         <Button mnemonicParsing="false" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Help" GridPane.halignment="CENTER" GridPane.rowIndex="4" />

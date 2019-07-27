@@ -217,13 +217,10 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             int id = r.getInt(1);
             Person person = new Person(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
                     r.getInt(5), r.getString(6), r.getString(7), r.getString(8));
-
-            getPersonByUsername.setString(1,username);
-            ResultSet rs = getPersonByUsername.executeQuery();
-            if(rs.next()){
-                Person p = getPersonById(rs.getInt(1));
+            if(r.next()){
+                Person p = getPersonById(r.getInt(1));
                 if(p != null) {
-                    return new Admin(rs.getInt(1), person);
+                    return new Admin(r.getInt(1), person);
                 }
             }
         } catch (SQLException e) {

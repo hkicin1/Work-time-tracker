@@ -45,7 +45,7 @@ public class AdminController {
         Parent root = null;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminHelp.fxml"));
         root = loader.load();
-        stage.setTitle("Login");
+        stage.setTitle("Help");
         stage.setResizable(false);
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.initModality(Modality.APPLICATION_MODAL);
