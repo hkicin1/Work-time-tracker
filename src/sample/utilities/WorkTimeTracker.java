@@ -14,6 +14,7 @@ public class WorkTimeTracker {
     }
 
     public Person findPersonByUsernameAndPasaword(boolean adminNotEmployee, String username, String password){
+        adminNotEmployee = true;
         if(adminNotEmployee){
             Person adminPerson = dao.getPersonByUsername(username);
             if(adminPerson != null && adminPerson.getPassword().equals(password)) return adminPerson;

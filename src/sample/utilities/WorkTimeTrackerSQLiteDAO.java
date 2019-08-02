@@ -6,37 +6,67 @@ import sample.models.Employee;
 import sample.models.Person;
 import sample.models.Project;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.io.FileInputStream;
 
 public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
-    private static Connection connection;
+    private static WorkTimeTrackerSQLiteDAO instance;
 
-    private static PreparedStatement addPerson, addAdmin, addEmployee, addProject;
-    private static PreparedStatement getPersonById, getAdminById, getEmployeeById;
-    private static PreparedStatement deletePerson, deleteAdmin, deleteEmployee;
-    private static PreparedStatement getNewPersonId, getNewAdminId, getNewEmployeeId, getNewProjectId;
-    private static PreparedStatement getEmployeeWorkTime, getProjectWorkTimeForEmployee;
-    private static PreparedStatement getPersonByUsername;
+    private Connection connection;
+
+    private PreparedStatement addPerson, addAdmin, addEmployee, addProject;
+    private PreparedStatement getPersonById, getAdminById, getEmployeeById;
+    private PreparedStatement deletePerson, deleteAdmin, deleteEmployee;
+    private PreparedStatement getNewPersonId, getNewAdminId, getNewEmployeeId, getNewProjectId;
+    private PreparedStatement getEmployeeWorkTime, getProjectWorkTimeForEmployee;
+    private PreparedStatement getPersonByUsername;
+
+    public static WorkTimeTrackerSQLiteDAO getInstance() {
+        if(instance == null) instance = new WorkTimeTrackerSQLiteDAO();
+        return instance;
+    }
 
     WorkTimeTrackerSQLiteDAO(){
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:work_time_tracker.db");
-            initializeStatements();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            try {
-                initialiseDatabase();
-                initializeStatements();
-            } catch (SQLException ex) {
+           e.printStackTrace();
+        }
 
-            }
+        try {
+            getPersonById = connection.prepareStatement("select * from person where id = ?");
+        }
+        catch (SQLException e) {
+            initializeDatabase();
+        }
+
+        try {
+            addPerson = connection.prepareStatement("insert into person values(?,?,?,?,?,?,?,?)");
+            addAdmin = connection.prepareStatement("insert into admin values(?,?)");
+            addEmployee = connection.prepareStatement("insert into employee values(?,?)");
+            addProject = connection.prepareStatement("insert into project values(?,?,?,?,?)");
+
+            getPersonById = connection.prepareStatement("select * from person where id = ?");
+            getAdminById = connection.prepareStatement("select * from admin where id = ?");
+            getEmployeeById = connection.prepareStatement("select * from person, employee where person.id = employee.id and person.id = ?");
+            getEmployeeWorkTime = connection.prepareStatement("select work_hours from work_hours w,employee e where w.employee_id = e.id");
+
+            deletePerson = connection.prepareStatement("delete from person where id = ?");
+            deleteAdmin = connection.prepareStatement("delete from admin where id = ?");
+            deleteEmployee = connection.prepareStatement("delete from employee where id = ?");
+
+            getNewPersonId = connection.prepareStatement("select MAX(id) + 1 FROM person");
+            getNewAdminId = connection.prepareStatement("select MAX(id) + 1 FROM admin");
+            getNewEmployeeId = connection.prepareStatement("select MAX(id) + 1 FROM employee");
+            getNewProjectId = connection.prepareStatement("select MAX(id) + 1 FROM project");
+
+            getPersonByUsername = connection.prepareStatement("select * from person where username = ?");
+        } catch (SQLException e){
+            e.printStackTrace();
         }
     }
 
@@ -50,71 +80,34 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
     }
 
 
-
-    private void initializeStatements() throws SQLException {
-        addPerson = connection.prepareStatement("insert into person values(?,?,?,?,?,?,?,?)");
-        addAdmin = connection.prepareStatement("insert into admin values(?,?)");
-        addEmployee = connection.prepareStatement("insert into employee values(?,?)");
-        addProject = connection.prepareStatement("insert into project values(?,?,?,?,?)");
-
-        getPersonById = connection.prepareStatement("select * from person where id = ?");
-        getAdminById = connection.prepareStatement("select * from admin where id = ?");
-        getEmployeeById = connection.prepareStatement("select * from person, employee where person.id = employee.id and person.id = ?");
-        getEmployeeWorkTime = connection.prepareStatement("select work_hours from work_hours w,employee e where w.employee_id = e.id");
-        getProjectWorkTimeForEmployee = connection.prepareStatement("select work_hours from project_work_hours,employee,project " +
-                "where work_hours.employee_id = employee.id and project.id = project_work_hours.id");
-
-        deletePerson = connection.prepareStatement("delete from person where id = ?");
-        deleteAdmin = connection.prepareStatement("delete from admin where id = ?");
-        deleteEmployee = connection.prepareStatement("delete from employee where id = ?");
-
-        getNewPersonId = connection.prepareStatement("select MAX(id) + 1 FROM person");
-        getNewAdminId = connection.prepareStatement("select MAX(id) + 1 FROM admin");
-        getNewEmployeeId = connection.prepareStatement("select MAX(id) + 1 FROM employee");
-        getNewProjectId = connection.prepareStatement("select MAX(id) + 1 FROM project");
-
-        getPersonByUsername = connection.prepareStatement("select * from person where person.username = ?");
-
-    }
-
-    
-    private void initialiseDatabase() {
-        String sql="";
-        java.net.URL x = getClass().getResource("../work_time_tracker.db.sql");
-        FileReader fileReader = null;
+    private void initializeDatabase() {
+        Scanner input = null;
         try {
-            fileReader = new FileReader(x.getFile());
-
-            // Always wrap FileReader in BufferedReader.
-            BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
-            Scanner scanner = new Scanner(bufferedReader);
-            while(scanner.hasNextLine()){
-                sql+=scanner.nextLine();
-            }
-            try {
-                scanner.close();
-                bufferedReader.close();
-                fileReader.close();
-            } catch (IOException e) {
-
-            }
+            input = new Scanner(new FileInputStream("work_time_tracker.db.sql"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        sql = sql.replace("\n"," ");
-        sql = sql.replace(";","\n");
-        String[] upiti = sql.split("\n");
-        try {
-            Statement statement = connection.createStatement();
-            for (String upit : upiti){
-                statement.execute(upit);
+        String sqlQuery = "";
+        while(input.hasNext()) {
+            sqlQuery += input.nextLine();
+            if ( sqlQuery.length() == 0 ) {
+                continue;
             }
-        } catch (SQLException e) {
-
+            else if (sqlQuery.charAt(sqlQuery.length() -1 ) == ';') {
+                try {
+                    Statement stmt = connection.createStatement();
+                    stmt.execute(sqlQuery);
+                    sqlQuery = "";
+                }
+                catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
-    }
 
+        input.close();
+
+    }
 
 
     @Override
@@ -211,9 +204,9 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
     public Person getPersonByUsername(String username) {
         try {
-
             getPersonByUsername.setString(1,username);
             ResultSet r = getPersonByUsername.executeQuery();
+
             int id = r.getInt(1);
             Person person = new Person(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
                     r.getInt(5), r.getString(6), r.getString(7), r.getString(8));
@@ -233,6 +226,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         try {
             PreparedStatement preparedStatement = null;
             preparedStatement = connection.prepareStatement("select * from person where id = ?");
+            preparedStatement.setLong(1, id);
             return getPerson(preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
