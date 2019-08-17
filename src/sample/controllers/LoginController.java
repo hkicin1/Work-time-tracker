@@ -10,6 +10,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.Injector;
+import sample.exceptions.InvalidCredentialException;
+import sample.exceptions.PersonDoesNotExistException;
 import sample.models.Person;
 import sample.utilities.WorkTimeTracker;
 
@@ -30,7 +33,7 @@ public class LoginController implements Initializable {
 
     private Person registeredPerson = null;
 
-    private WorkTimeTracker wtt = WorkTimeTracker.createWorkTimeTracker();
+    private WorkTimeTracker workTimeTracker = Injector.getWorkTimeTracker();
 
     public Person getRegisteredPerson() {
         return registeredPerson;
@@ -40,36 +43,58 @@ public class LoginController implements Initializable {
         this.registeredPerson = registeredPerson;
     }
 
-    private boolean admin = false;
-
-    private Person personExistsInDatabase(boolean admin, String enteredUsername, String enteredPassword) {
-        return wtt.findPersonByUsernameAndPasaword(admin, enteredUsername, enteredPassword);
-    }
+    private boolean admin = true;
 
     public void loginAction(ActionEvent actionEvent) {
         username = txtUsername.getText();
         password = pwdPassword.getText();
 
-        if(password != null || username != null) {
-            setRegisteredPerson(personExistsInDatabase(admin, username, password));
+        if (username.isEmpty() || username == null) {
+            lblConfirmation.setText("Unesite username");
+
+            return;
+        } else if (password == null || password.isEmpty()) {
+            lblConfirmation.setText("Unesite password");
+            return;
         }
 
-        if(getRegisteredPerson() == null){
-            lblConfirmation.setText("Neispravni pristupni podaci, unesite ponovo!");
-            txtUsername.clear();
-            pwdPassword.clear();
-        }
-        else {
+        try {
+            Person person = workTimeTracker.loginPerson(username,password);
             lblConfirmation.setText("Uspješno ste prijavljeni!");
             Stage stage = (Stage) pwdPassword.getScene().getWindow();
             stage.close();
-            if(admin) openAdminPannel();
+            setRegisteredPerson(person);
+            if (admin) openAdminPannel();
             else openEmployeePannel();
+        } catch (PersonDoesNotExistException e) {
+            lblConfirmation.setText("User ne postoji");
+            txtUsername.clear();
+            pwdPassword.clear();
+        } catch (InvalidCredentialException e) {
+            lblConfirmation.setText("Neispravni pristupni podaci, unesite ponovo!");
+            txtUsername.clear();
+            pwdPassword.clear();
         }
 
     }
 
     private void openEmployeePannel() {
+        Person a = registeredPerson;//e.getAdminByUsername(enteredUsername);
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/employee.fxml"));
+            root = loader.load();
+            AdminController controller = loader.getController();
+            controller.setRegisteredAdmin(a);
+            stage.setTitle("Employee panel");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void openAdminPannel() {

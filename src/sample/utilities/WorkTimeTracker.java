@@ -1,28 +1,27 @@
 package sample.utilities;
 
+import sample.exceptions.InvalidCredentialException;
+import sample.exceptions.PersonDoesNotExistException;
 import sample.models.Person;
 
 public class WorkTimeTracker {
-    private WorkTimeTrackerSQLiteDAO dao;
+    private WorkTimeTrackerDAO dao;
 
-    private WorkTimeTracker(WorkTimeTrackerSQLiteDAO dao){
+    public WorkTimeTracker(WorkTimeTrackerDAO dao) {
         this.dao = dao;
     }
 
-    public static WorkTimeTracker createWorkTimeTracker(){
-        return new WorkTimeTracker(new WorkTimeTrackerSQLiteDAO());
-    }
+    public Person loginPerson(String username, String password) throws PersonDoesNotExistException, InvalidCredentialException {
+        Person person = dao.getPersonByUsername(username);
 
-    public Person findPersonByUsernameAndPasaword(boolean adminNotEmployee, String username, String password){
-        adminNotEmployee = true;
-        if(adminNotEmployee){
-            Person adminPerson = dao.getPersonByUsername(username);
-            if(adminPerson != null && adminPerson.getPassword().equals(password)) return adminPerson;
-            else return null;
-        } else {    //employeeNotAdmin
-            Person employeePerson = dao.getPersonByUsername(username);
-            if(employeePerson != null && employeePerson.getPassword().equals(password)) return employeePerson;
-        }
-        return null;
+        // Check if person exists
+        // throw @PersonDoesNotExistException if person is not found
+        if (person == null) throw new PersonDoesNotExistException();
+
+        // Check is password valid
+        // throw @InvalidCredentialException if password is not valid
+        if (!dao.checkIsPasswordValid(username,password)) throw new InvalidCredentialException();
+
+        return person;
     }
 }

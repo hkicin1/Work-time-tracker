@@ -5,17 +5,17 @@ import sample.models.Employee;
 import sample.models.Person;
 import sample.models.Project;
 
-import java.sql.PreparedStatement;
-import java.util.List;
-
 public interface WorkTimeTrackerDAO {
 
-    void addPerson(Person p);
+    void addPerson(Person person);
 
-    void addEmployee(Employee e);
+    void addEmployee(Employee employee);
 
     void addProject(Project project);
 
-    void addAdmin(Admin a);
+    void addAdmin(Admin admin);
 
+    boolean checkIsPasswordValid(String username, String password);
+
+    Person getPersonByUsername(String username);
 }

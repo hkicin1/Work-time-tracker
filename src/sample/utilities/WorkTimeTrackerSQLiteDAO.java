@@ -6,11 +6,11 @@ import sample.models.Employee;
 import sample.models.Person;
 import sample.models.Project;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.io.FileInputStream;
 
 public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
@@ -30,7 +30,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         return instance;
     }
 
-    WorkTimeTrackerSQLiteDAO(){
+    public WorkTimeTrackerSQLiteDAO(){
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:work_time_tracker.db");
         } catch (SQLException e) {
@@ -126,10 +126,24 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             addPerson.setInt(5, p.getPostalNumber());
             addPerson.setString(6, p.getCity());
             addPerson.setString(7, p.getUserName());
-            addPerson.setString(8, p.getPassword());
             addPerson.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (getNewPersonId != null) {
+                try {
+                    getNewPersonId.close();
+                } catch (SQLException d) {
+                    d.printStackTrace();
+                }
+            }
+            if (addPerson != null) {
+                try {
+                    addPerson.close();
+                } catch (SQLException d) {
+                    d.printStackTrace();
+                }
+            }
         }
 
     }
@@ -148,11 +162,19 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             addEmployee.executeUpdate();
         } catch (SQLException a) {
             a.printStackTrace();
+        } finally {
+            if (addEmployee != null) {
+                try {
+                    addEmployee.close();
+                } catch (SQLException d) {
+                    d.printStackTrace();
+                }
+            }
         }
     }
 
     public Date convertToDate(LocalDate dateToConvert) {
-        return java.sql.Date.valueOf(dateToConvert);
+        return Date.valueOf(dateToConvert);
     }
 
     @Override
@@ -172,6 +194,21 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             addProject.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (getNewProjectId != null) {
+                try {
+                    getNewProjectId.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (addProject != null) {
+                try {
+                    addProject.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -190,46 +227,94 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
                 addAdmin.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                if (getNewAdminId != null) {
+                    try {
+                        getNewAdminId.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
+    }
+
+    @Override
+    public boolean checkIsPasswordValid(String username, String password) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("select * from person where username = ?");
+
+            preparedStatement.setString(1,username);
+            ResultSet r = preparedStatement.executeQuery();
+            if (r.next()) {
+                String test = r.getString(8);
+                return test.equals(password);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
     }
 
     public Person getPerson(PreparedStatement preparedStatement) throws SQLException {
         ResultSet r = preparedStatement.executeQuery();
         if(r.next()) {
             return new Person(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
-                    r.getInt(5), r.getString(6), r.getString(7), r.getString(8));
+                    r.getInt(5), r.getString(6), r.getString(7));
         }
         return null;
     }
 
     public Person getPersonByUsername(String username) {
+        PreparedStatement preparedStatement = null;
         try {
-            getPersonByUsername.setString(1,username);
-            ResultSet r = getPersonByUsername.executeQuery();
+            preparedStatement = connection.prepareStatement("select * from person where username = ?");
 
-            int id = r.getInt(1);
-            Person person = new Person(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
-                    r.getInt(5), r.getString(6), r.getString(7), r.getString(8));
-            if(r.next()){
-                Person p = getPersonById(r.getInt(1));
-                if(p != null) {
-                    return new Admin(r.getInt(1), person);
-                }
+            preparedStatement.setString(1,username);
+            ResultSet r = preparedStatement.executeQuery();
+            if (r.next()) {
+                Person person = new Person(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
+                        r.getInt(5), r.getString(6), r.getString(7));
+                return person;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return null;
     }
 
     public Person getPersonById(long id) {
+        PreparedStatement preparedStatement = null;
         try {
-            PreparedStatement preparedStatement = null;
             preparedStatement = connection.prepareStatement("select * from person where id = ?");
             preparedStatement.setLong(1, id);
             return getPerson(preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return null;
     }

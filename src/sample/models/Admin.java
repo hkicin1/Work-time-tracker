@@ -20,8 +20,8 @@ public class Admin extends Person {
         this.person = person;
     }
 
-    public Admin(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password, int adminId, Person person) {
-        super(id, name, surname, address, postalNumber, city, userName, password);
+    public Admin(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, int adminId, Person person) {
+        super(id, name, surname, address, postalNumber, city, userName);
         this.adminId = adminId;
         this.person = person;
     }
@@ -31,7 +31,7 @@ public class Admin extends Person {
         this.person = person;
     }
 
-    public Admin(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password) {
-        super(id, name, surname, address, postalNumber, city, userName, password);
+    public Admin(int id, String name, String surname, String address, Integer postalNumber, String city, String userName) {
+        super(id, name, surname, address, postalNumber, city, userName);
     }
 }

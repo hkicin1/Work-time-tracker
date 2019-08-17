@@ -20,13 +20,13 @@ public class Employee extends Person {
         this.person = person;
     }
 
-    public Employee(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password, int employeeId, Person person) {
-        super(id, name, surname, address, postalNumber, city, userName, password);
+    public Employee(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, int employeeId, Person person) {
+        super(id, name, surname, address, postalNumber, city, userName);
         this.employeeId = employeeId;
         this.person = person;
     }
 
-    public Employee(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password) {
-        super(id, name, surname, address, postalNumber, city, userName, password);
+    public Employee(int id, String name, String surname, String address, Integer postalNumber, String city, String userName) {
+        super(id, name, surname, address, postalNumber, city, userName);
     }
 }

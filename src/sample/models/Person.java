@@ -1,7 +1,5 @@
 package sample.models;
 
-import javafx.fxml.Initializable;
-
 public class Person {
     private int id;
     private String name;
@@ -10,9 +8,8 @@ public class Person {
     private Integer postalNumber;
     private String city;
     private String userName;
-    private String password;
 
-    public Person(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password) {
+    public Person(int id, String name, String surname, String address, Integer postalNumber, String city, String userName) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -20,7 +17,6 @@ public class Person {
         this.postalNumber = postalNumber;
         this.city = city;
         this.userName = userName;
-        this.password = password;
     }
 
     public Person() {
@@ -82,11 +78,4 @@ public class Person {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
