@@ -2,7 +2,7 @@ package sample.utilities;
 
 import sample.exceptions.InvalidCredentialException;
 import sample.exceptions.PersonDoesNotExistException;
-import sample.models.Person;
+import sample.models.User;
 
 public class WorkTimeTracker {
     private WorkTimeTrackerDAO dao;
@@ -11,17 +11,17 @@ public class WorkTimeTracker {
         this.dao = dao;
     }
 
-    public Person loginPerson(String username, String password) throws PersonDoesNotExistException, InvalidCredentialException {
-        Person person = dao.getPersonByUsername(username);
+    public User loginPerson(String username, String password) throws PersonDoesNotExistException, InvalidCredentialException {
+        User user = dao.getUserByUsername(username);
 
-        // Check if person exists
-        // throw @PersonDoesNotExistException if person is not found
-        if (person == null) throw new PersonDoesNotExistException();
+        // Check if user exists
+        // throw @PersonDoesNotExistException if user is not found
+        if (user == null) throw new PersonDoesNotExistException();
 
         // Check is password valid
         // throw @InvalidCredentialException if password is not valid
         if (!dao.checkIsPasswordValid(username,password)) throw new InvalidCredentialException();
 
-        return person;
+        return user;
     }
 }

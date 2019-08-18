@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import sample.Injector;
 import sample.exceptions.InvalidCredentialException;
 import sample.exceptions.PersonDoesNotExistException;
-import sample.models.Person;
+import sample.models.User;
 import sample.utilities.WorkTimeTracker;
 
 import java.io.IOException;
@@ -31,16 +31,16 @@ public class LoginController implements Initializable {
     private String username;
     private String password;
 
-    private Person registeredPerson = null;
+    private User registeredUser = null;
 
     private WorkTimeTracker workTimeTracker = Injector.getWorkTimeTracker();
 
-    public Person getRegisteredPerson() {
-        return registeredPerson;
+    public User getRegisteredUser() {
+        return registeredUser;
     }
 
-    public void setRegisteredPerson(Person registeredPerson) {
-        this.registeredPerson = registeredPerson;
+    public void setRegisteredUser(User registeredUser) {
+        this.registeredUser = registeredUser;
     }
 
     private boolean admin = true;
@@ -59,11 +59,11 @@ public class LoginController implements Initializable {
         }
 
         try {
-            Person person = workTimeTracker.loginPerson(username,password);
+            User user = workTimeTracker.loginPerson(username,password);
             lblConfirmation.setText("Uspješno ste prijavljeni!");
             Stage stage = (Stage) pwdPassword.getScene().getWindow();
             stage.close();
-            setRegisteredPerson(person);
+            setRegisteredUser(user);
             if (admin) openAdminPannel();
             else openEmployeePannel();
         } catch (PersonDoesNotExistException e) {
@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
     }
 
     private void openEmployeePannel() {
-        Person a = registeredPerson;//e.getAdminByUsername(enteredUsername);
+        User a = registeredUser;//e.getAdminByUsername(enteredUsername);
         Stage stage = new Stage();
         Parent root = null;
         try {
@@ -98,7 +98,7 @@ public class LoginController implements Initializable {
     }
 
     private void openAdminPannel() {
-        Person a = registeredPerson;//e.getAdminByUsername(enteredUsername);
+        User a = registeredUser;//e.getAdminByUsername(enteredUsername);
         Stage stage = new Stage();
         Parent root = null;
         try {

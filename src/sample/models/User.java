@@ -1,6 +1,6 @@
 package sample.models;
 
-public class Person {
+public class User {
     private int id;
     private String name;
     private String surname;
@@ -8,8 +8,9 @@ public class Person {
     private Integer postalNumber;
     private String city;
     private String userName;
+    private int isAdmin;
 
-    public Person(int id, String name, String surname, String address, Integer postalNumber, String city, String userName) {
+    public User(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, int isAdmin) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -17,9 +18,10 @@ public class Person {
         this.postalNumber = postalNumber;
         this.city = city;
         this.userName = userName;
+        this.isAdmin = isAdmin;
     }
 
-    public Person() {
+    public User() {
     }
 
     public int getId() {
@@ -78,4 +80,11 @@ public class Person {
         this.userName = userName;
     }
 
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 }

@@ -6,14 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.models.Person;
+import sample.models.User;
 
 import java.io.IOException;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class AdminController {
-    public void setRegisteredAdmin(Person a) {
+    public void setRegisteredAdmin(User a) {
     }
 
     public void manageEmployeesAction(ActionEvent actionEvent) throws IOException {
