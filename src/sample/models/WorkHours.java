@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class WorkHours {
     private int id;
-    private Employee employeeId;
+    private User userId;
     private Date date;
     private int workHours;
 
@@ -16,12 +16,13 @@ public class WorkHours {
         this.id = id;
     }
 
-    public Employee getEmployeeId() {
-        return employeeId;
+
+    public User getUserId() {
+        return userId;
     }
 
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     public Date getDate() {
@@ -43,9 +44,9 @@ public class WorkHours {
     public WorkHours() {
     }
 
-    public WorkHours(int id, Employee employeeId, Date date, int workHours) {
+    public WorkHours(int id, User userId, Date date, int workHours) {
         this.id = id;
-        this.employeeId = employeeId;
+        this.userId = userId;
         this.date = date;
         this.workHours = workHours;
     }

@@ -43,7 +43,6 @@ public class LoginController implements Initializable {
         this.registeredUser = registeredUser;
     }
 
-    private boolean admin = true;
 
     public void loginAction(ActionEvent actionEvent) {
         username = txtUsername.getText();
@@ -64,7 +63,7 @@ public class LoginController implements Initializable {
             Stage stage = (Stage) pwdPassword.getScene().getWindow();
             stage.close();
             setRegisteredUser(user);
-            if (admin) openAdminPannel();
+            if (user.getIsAdmin() == 1) openAdminPannel();
             else openEmployeePannel();
         } catch (PersonDoesNotExistException e) {
             lblConfirmation.setText("User ne postoji");

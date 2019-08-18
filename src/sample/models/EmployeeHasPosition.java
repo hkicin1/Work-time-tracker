@@ -1,18 +1,18 @@
 package sample.models;
 
 public class EmployeeHasPosition {
-    private Employee employeeId;
+    private User userId;
     private Position positionId;
 
     public EmployeeHasPosition() {
     }
 
-    public Employee getEmployeeId() {
-        return employeeId;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     public Position getPositionId() {
@@ -23,8 +23,8 @@ public class EmployeeHasPosition {
         this.positionId = positionId;
     }
 
-    public EmployeeHasPosition(Employee employeeId, Position positionId) {
-        this.employeeId = employeeId;
+    public EmployeeHasPosition(User userId, Position positionId) {
+        this.userId = userId;
         this.positionId = positionId;
     }
 }
