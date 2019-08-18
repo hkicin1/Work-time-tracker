@@ -6,22 +6,34 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.models.User;
 
 import java.io.IOException;
 
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
-
 public class EmployeeController {
+
+    private User registeredEmployee;
+
+    public void setRegisteredEmployee(User a) {
+        this.registeredEmployee = a;
+    }
+
     public void selectProjectAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectProject.fxml"));
-        root = loader.load();
-        stage.setTitle("Manage projects");
-        stage.setResizable(false);
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectProject.fxml"));
+            root = loader.load();
+            SelectProjectController controller = loader.getController();
+            //controller.start();
+            stage.setResizable(false);
+            stage.setTitle("Select project");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void startWorkTimeAction(ActionEvent actionEvent) {

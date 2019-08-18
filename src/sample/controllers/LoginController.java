@@ -84,8 +84,8 @@ public class LoginController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/employee.fxml"));
             root = loader.load();
-            AdminController controller = loader.getController();
-            controller.setRegisteredAdmin(a);
+            EmployeeController controller = loader.getController();
+            controller.setRegisteredEmployee(a);
             stage.setTitle("Employee panel");
             stage.setResizable(false);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

@@ -47,7 +47,6 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             addProject = connection.prepareStatement("insert into project values(?,?,?,?,?)");
 
             getUserById = connection.prepareStatement("select * from user where id = ?");
-            getEmployeeWorkTime = connection.prepareStatement("select work_hours from work_hours w,employee e where w.employee_id = e.id");
 
             deleteUser = connection.prepareStatement("delete from user where id = ?");
 

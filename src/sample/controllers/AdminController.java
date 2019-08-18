@@ -13,7 +13,11 @@ import java.io.IOException;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class AdminController {
+
+    private User registeredAdmin;
+
     public void setRegisteredAdmin(User a) {
+        this.registeredAdmin = a;
     }
 
     public void manageEmployeesAction(ActionEvent actionEvent) throws IOException {
