@@ -34,7 +34,7 @@
         <Button fx:id="btnStartWorkTime" mnemonicParsing="false" onAction="#startWorkTimeAction" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Start/end work time" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
         <Button mnemonicParsing="false" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="My work hours report" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
 
-        <Button mnemonicParsing="false" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Help" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+        <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#helpAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Help" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
 
     </children>
     <padding>

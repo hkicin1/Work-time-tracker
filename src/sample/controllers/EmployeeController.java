@@ -10,6 +10,8 @@ import sample.models.User;
 
 import java.io.IOException;
 
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+
 public class EmployeeController {
 
     private User registeredEmployee;
@@ -48,5 +50,17 @@ public class EmployeeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void helpAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/employeeHelp.fxml"));
+        root = loader.load();
+        stage.setTitle("Help");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 }
