@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="600.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="600.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.StartProjectTimeController">
     <center>
         <VBox alignment="TOP_CENTER">
             <children>
@@ -30,21 +30,6 @@
                   <Insets left="10.0" />
                </VBox.margin></Separator>
                 <HBox alignment="CENTER">
-                    <children>
-                        <Label text="You should be">
-                            <font>
-                                <Font name="Tw Cen MT" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label id="modeLabel" fx:id="modeStatusLabel" text="working">
-                            <font>
-                                <Font name="Tw Cen MT" size="18.0" />
-                            </font>
-                            <padding>
-                                <Insets left="2.0" />
-                            </padding>
-                        </Label>
-                    </children>
                     <padding>
                         <Insets top="10.0" />
                     </padding>
@@ -59,14 +44,14 @@
                 </Label>
                 <HBox alignment="CENTER">
                     <children>
-                        <ToggleButton id="startStopButton" fx:id="startStopButton" mnemonicParsing="false" text="Start Working!">
+                        <ToggleButton fx:id="btnStartStop" mnemonicParsing="false" onAction="#startStopAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Start Working!">
                             <font>
                                 <Font name="Tw Cen MT" size="25.0" />
                             </font>
                         </ToggleButton>
                     </children>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
                 </HBox>
             </children>

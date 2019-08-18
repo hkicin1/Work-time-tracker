@@ -24,8 +24,6 @@ public class EmployeeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectProject.fxml"));
             root = loader.load();
-            SelectProjectController controller = loader.getController();
-            //controller.start();
             stage.setResizable(false);
             stage.setTitle("Select project");
             stage.setScene(new Scene(root));
@@ -37,5 +35,18 @@ public class EmployeeController {
     }
 
     public void startWorkTimeAction(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/startWorkTime.fxml"));
+            root = loader.load();
+            stage.setResizable(false);
+            stage.setTitle("Start working");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
