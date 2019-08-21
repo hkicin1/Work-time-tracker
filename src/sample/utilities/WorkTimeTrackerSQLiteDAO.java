@@ -1,8 +1,10 @@
 package sample.utilities;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.sqlite.JDBC;
-import sample.models.User;
 import sample.models.Project;
+import sample.models.User;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,12 +18,16 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
     private Connection connection;
 
-    private PreparedStatement addUser, addProject;
+    private ObservableList<Project> projects = FXCollections.observableArrayList();
+
+    private PreparedStatement addUser, addProject, addWorkHoursForUser;
     private PreparedStatement getUserById;
     private PreparedStatement deleteUser;
     private PreparedStatement getNewUserId, getNewProjectId;
     private PreparedStatement getEmployeeWorkTime, getProjectWorkTimeForEmployee;
     private PreparedStatement getUserByUsername;
+    private PreparedStatement getProjects;
+
 
     public static WorkTimeTrackerSQLiteDAO getInstance() {
         if(instance == null) instance = new WorkTimeTrackerSQLiteDAO();
@@ -45,6 +51,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         try {
             addUser = connection.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?)");
             addProject = connection.prepareStatement("insert into project values(?,?,?,?,?)");
+//            addWorkHoursForUser = connection.prepareStatement("insert into work_hours values(?,?,?,?) where id = ?");
 
             getUserById = connection.prepareStatement("select * from user where id = ?");
 
@@ -55,6 +62,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             getNewProjectId = connection.prepareStatement("select MAX(id) + 1 FROM project");
 
             getUserByUsername = connection.prepareStatement("select * from user where username = ?");
+            getProjects = connection.prepareStatement("select * from project");
         } catch (SQLException e){
             e.printStackTrace();
         }

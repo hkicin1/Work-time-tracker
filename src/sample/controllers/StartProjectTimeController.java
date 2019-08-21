@@ -5,7 +5,11 @@ import javafx.event.ActionEvent;
 public class StartProjectTimeController {
 
 
-    public void startStopAction(ActionEvent actionEvent) {
+    public void startAction(ActionEvent actionEvent) {
+
+    }
+
+    public void stopAction(ActionEvent actionEvent) {
 
     }
 }

@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 
 public class SelectProjectController implements Initializable {
     public Button btnExit;
+    public Button btnStart;
 
     public void exitAction(ActionEvent actionEvent) {
         Stage stage = (Stage) btnExit.getScene().getWindow();

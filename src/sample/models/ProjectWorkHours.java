@@ -1,6 +1,6 @@
 package sample.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ProjectWorkHours extends WorkHours {
     private Project projectId;
@@ -9,7 +9,7 @@ public class ProjectWorkHours extends WorkHours {
         this.projectId = projectId;
     }
 
-    public ProjectWorkHours(int id, User userId, Date date, int workHours, Project projectId) {
+    public ProjectWorkHours(int id, User userId, LocalDate date, String workHours, Project projectId) {
         super(id, userId, date, workHours);
         this.projectId = projectId;
     }

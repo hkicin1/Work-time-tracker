@@ -23,7 +23,7 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <ListView fx:id="listKorisnici" prefHeight="200.0" prefWidth="190.0" GridPane.halignment="CENTER">
+        <ListView fx:id="projectListView" prefHeight="200.0" prefWidth="190.0" GridPane.halignment="CENTER">
             <GridPane.margin>
                 <Insets />
             </GridPane.margin></ListView>

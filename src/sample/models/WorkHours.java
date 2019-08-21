@@ -1,12 +1,15 @@
 package sample.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class WorkHours {
     private int id;
     private User userId;
-    private Date date;
-    private int workHours;
+    private LocalDate date;
+    private String workHours;
+
+    public WorkHours() {
+    }
 
     public int getId() {
         return id;
@@ -25,26 +28,23 @@ public class WorkHours {
         this.userId = userId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public int getWorkHours() {
+    public String getWorkHours() {
         return workHours;
     }
 
-    public void setWorkHours(int workHours) {
+    public void setWorkHours(String workHours) {
         this.workHours = workHours;
     }
 
-    public WorkHours() {
-    }
-
-    public WorkHours(int id, User userId, Date date, int workHours) {
+    public WorkHours(int id, User userId, LocalDate date, String workHours) {
         this.id = id;
         this.userId = userId;
         this.date = date;

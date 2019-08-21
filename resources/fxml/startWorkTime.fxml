@@ -53,6 +53,14 @@
                   </Button>
                </children>
                 </HBox>
+            <Label fx:id="lblWorking">
+                <font>
+                    <Font name="Tw Cen MT" size="24.0" />
+                </font>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
             </children>
         </VBox>
     </center>
