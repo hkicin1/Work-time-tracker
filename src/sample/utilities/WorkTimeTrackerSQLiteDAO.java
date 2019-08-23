@@ -218,7 +218,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         ResultSet r = preparedStatement.executeQuery();
         if(r.next()) {
             return new User(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
-                    r.getInt(5), r.getString(6), r.getString(7), r.getInt(8));
+                    r.getInt(5), r.getString(6), r.getString(7), r.getString(8), r.getInt(9));
         }
         return null;
     }
@@ -232,7 +232,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             ResultSet r = preparedStatement.executeQuery();
             if (r.next()) {
                 User user = new User(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
-                        r.getInt(5), r.getString(6), r.getString(7), r.getInt(8));
+                        r.getInt(5), r.getString(6), r.getString(7), r.getString(8), r.getInt(9));
                 return user;
             }
         } catch (SQLException e) {

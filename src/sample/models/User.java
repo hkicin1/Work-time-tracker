@@ -8,9 +8,10 @@ public class User {
     private Integer postalNumber;
     private String city;
     private String userName;
+    private String password;
     private int isAdmin;
 
-    public User(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, int isAdmin) {
+    public User(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password, int isAdmin) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -18,6 +19,7 @@ public class User {
         this.postalNumber = postalNumber;
         this.city = city;
         this.userName = userName;
+        this.password = password;
         this.isAdmin = isAdmin;
     }
 
