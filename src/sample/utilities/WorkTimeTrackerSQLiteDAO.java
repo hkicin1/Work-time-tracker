@@ -10,6 +10,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
@@ -21,12 +23,16 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
     private ObservableList<Project> projects = FXCollections.observableArrayList();
 
     private PreparedStatement addUser, addProject, addWorkHoursForUser;
-    private PreparedStatement getUserById;
-    private PreparedStatement deleteUser;
+
+    private PreparedStatement getUserById, getUserByUsername, getProjectById;
+
+    private PreparedStatement deleteUser, deleteProject;
+
     private PreparedStatement getNewUserId, getNewProjectId;
+
     private PreparedStatement getEmployeeWorkTime, getProjectWorkTimeForEmployee;
-    private PreparedStatement getUserByUsername;
-    private PreparedStatement getProjects;
+
+    private PreparedStatement getAllProjects, getAllEmployees;
 
 
     public static WorkTimeTrackerSQLiteDAO getInstance() {
@@ -54,15 +60,17 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 //            addWorkHoursForUser = connection.prepareStatement("insert into work_hours values(?,?,?,?) where id = ?");
 
             getUserById = connection.prepareStatement("select * from user where id = ?");
+            getProjectById = connection.prepareStatement("select * from project where id = ?");
 
             deleteUser = connection.prepareStatement("delete from user where id = ?");
-
+            deleteProject = connection.prepareStatement("delete from project where id = ?");
 
             getNewUserId = connection.prepareStatement("select MAX(id) + 1 FROM user");
             getNewProjectId = connection.prepareStatement("select MAX(id) + 1 FROM project");
 
             getUserByUsername = connection.prepareStatement("select * from user where username = ?");
-            getProjects = connection.prepareStatement("select * from project");
+            getAllProjects = connection.prepareStatement("select * from project");
+            getAllEmployees = connection.prepareStatement("select * from user");
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -268,5 +276,39 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         }
         return null;
     }
+    public ArrayList<Project> getAllProjects() throws SQLException {
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            ResultSet r = statement.executeQuery("select * from project");
+            ArrayList<Project> allProjects = new ArrayList<>();
+            while (r.next()){
+                allProjects.add(getProjectById(r.getInt(1)));
+            }
+            return allProjects;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            statement.close();
+        }
+        return null;
+    }
 
+    private Project getProjectById(int id) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("select * from project where id = ?");
+            preparedStatement.setLong(1, id);
+            ResultSet r = preparedStatement.executeQuery();
+            if(r.next()){
+                return new Project(r.getInt(1), r.getString(2), r.getDate(3).toLocalDate(), r.getDate(4).toLocalDate(), r.getInt(5));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            preparedStatement.close();
+        }
+        return null;
+
+    }
 }

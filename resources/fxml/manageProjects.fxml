@@ -29,7 +29,7 @@
       <RowConstraints />
     </rowConstraints>
     <children>
-        <ListView fx:id="listKorisnici" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowSpan="4">
+        <ListView fx:id="listProjects" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowSpan="4">
             <GridPane.margin>
                 <Insets left="10.0" top="10.0" />
             </GridPane.margin></ListView>
@@ -46,8 +46,8 @@
 
         <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="469.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="CENTER">
             <buttons>
-                <Button fx:id="btnAdd" mnemonicParsing="true" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Add" />
-                <Button fx:id="btnDelete" mnemonicParsing="true" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Delete" />
+                <Button fx:id="btnAdd" mnemonicParsing="true" onAction="#addProjectAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Add" />
+                <Button fx:id="btnDelete" mnemonicParsing="true" onAction="#deleteProjectAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Delete" />
                 <Button fx:id="btnEnd" mnemonicParsing="true" onAction="#exitAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="E_xit" />
             </buttons>
             <GridPane.margin>
