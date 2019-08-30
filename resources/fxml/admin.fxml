@@ -24,7 +24,7 @@
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Button>
-       <Button mnemonicParsing="false" onAction="#manageProjectsAction" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Manage projects" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+       <Button fx:id="btnManageProjects" mnemonicParsing="false" onAction="#manageProjectsAction" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Manage projects" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
        <Button mnemonicParsing="false" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Work hours reports" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
 
        <Button mnemonicParsing="false" onAction="#helpAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Help" GridPane.halignment="CENTER" GridPane.rowIndex="4" />

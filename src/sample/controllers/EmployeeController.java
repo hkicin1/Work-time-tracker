@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.models.User;
@@ -15,6 +16,7 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class EmployeeController {
 
     private User registeredEmployee;
+    public Label lblUsername;
 
     public void setRegisteredEmployee(User a) {
         this.registeredEmployee = a;
