@@ -1,8 +1,8 @@
 package sample.utilities;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import org.sqlite.JDBC;
+import sample.models.Position;
 import sample.models.Project;
 import sample.models.User;
 
@@ -20,11 +20,9 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
     private Connection connection;
 
-    private ObservableList<Project> projects = FXCollections.observableArrayList();
-
     private PreparedStatement addUser, addProject, addWorkHoursForUser;
 
-    private PreparedStatement getUserById, getUserByUsername, getProjectById;
+    private PreparedStatement getUserById, getUserByUsername, getProjectById, getPositionById;
 
     private PreparedStatement deleteUser, deleteProject;
 
@@ -55,12 +53,12 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         }
 
         try {
-            addUser = connection.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?)");
-            addProject = connection.prepareStatement("insert into project values(?,?,?,?,?)");
-//            addWorkHoursForUser = connection.prepareStatement("insert into work_hours values(?,?,?,?) where id = ?");
+            addUser = connection.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?,?)");
+            addProject = connection.prepareStatement("insert into project values(?,?,?)");
 
             getUserById = connection.prepareStatement("select * from user where id = ?");
             getProjectById = connection.prepareStatement("select * from project where id = ?");
+            getPositionById = connection.prepareStatement("select * from position where id = ?");
 
             deleteUser = connection.prepareStatement("delete from user where id = ?");
             deleteProject = connection.prepareStatement("delete from project where id = ?");
@@ -171,8 +169,6 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
             addProject.setInt(1, project.getId());
             addProject.setString(2, project.getName());
-            addProject.setDate(3, convertToDate(project.getStartDate()));
-            addProject.setDate(4, convertToDate(project.getFinishDate()));
             addProject.setInt(5, project.getActivity());
             addProject.executeUpdate();
         } catch (SQLException e) {
@@ -205,7 +201,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             preparedStatement.setString(1,username);
             ResultSet r = preparedStatement.executeQuery();
             if (r.next()) {
-                String test = r.getString(8);
+                String test = r.getString(9);
                 return test.equals(password);
             }
         } catch (SQLException e) {
@@ -224,9 +220,18 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
     public User getUser(PreparedStatement preparedStatement) throws SQLException {
         ResultSet r = preparedStatement.executeQuery();
-        if(r.next()) {
-            return new User(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
-                    r.getInt(5), r.getString(6), r.getString(7), r.getString(8), r.getInt(9));
+        ResultSet resultSet = getAllEmployees.executeQuery();
+        while (resultSet.next()) {
+            getPositionById.setInt(1, resultSet.getInt(7));
+            ResultSet resultSet1 = getPositionById.executeQuery();
+            Position position = null;
+            while (resultSet1.next()) {
+                position = new Position(resultSet1.getInt(1), resultSet1.getString(2));
+            }
+            if (r.next()) {
+                return new User(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
+                        r.getInt(5), r.getString(6), position, r.getString(8), r.getString(9), r.getInt(10));
+            }
         }
         return null;
     }
@@ -235,16 +240,23 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement("select * from user where username = ?");
-
             preparedStatement.setString(1,username);
             ResultSet r = preparedStatement.executeQuery();
-            if (r.next()) {
+
+            getPositionById.setInt(1, r.getInt(7));
+            ResultSet resultSet1 = getPositionById.executeQuery();
+            Position position = new Position();
+            while (resultSet1.next()) {
+                position = new Position(resultSet1.getInt(1), resultSet1.getString(2));
+            }
+            while (r.next()) {
                 User user = new User(r.getInt(1), r.getString(2), r.getString(3), r.getString(4),
-                        r.getInt(5), r.getString(6), r.getString(7), r.getString(8), r.getInt(9));
+                            r.getInt(5), r.getString(6), position, r.getString(8), r.getString(9), r.getInt(10));
                 return user;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+        } catch (SQLException | NullPointerException a) {
+            a.printStackTrace();
         } finally {
             if (preparedStatement != null) {
                 try {
@@ -301,7 +313,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             preparedStatement.setLong(1, id);
             ResultSet r = preparedStatement.executeQuery();
             if(r.next()){
-                return new Project(r.getInt(1), r.getString(2), r.getDate(3).toLocalDate(), r.getDate(4).toLocalDate(), r.getInt(5));
+                return new Project(r.getInt(1), r.getString(2), r.getInt(3));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -309,6 +321,17 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             preparedStatement.close();
         }
         return null;
+    }
 
+    public List<Position> getAllPositions() throws SQLException {
+        List<Position> allPositions = new ArrayList<>();
+            Statement statement = connection.createStatement();
+            ResultSet r = statement.executeQuery("select * from position");
+            while (r.next()){
+                Position p = new Position(r.getInt(1), r.getString(2));
+                allPositions.add(p);
+            }
+            statement.close();
+        return allPositions;
     }
 }

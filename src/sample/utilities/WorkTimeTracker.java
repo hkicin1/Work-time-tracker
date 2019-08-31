@@ -2,15 +2,10 @@ package sample.utilities;
 
 import sample.exceptions.InvalidCredentialException;
 import sample.exceptions.PersonDoesNotExistException;
-import sample.models.Project;
 import sample.models.User;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class WorkTimeTracker {
     private WorkTimeTrackerDAO dao;
-    private WorkTimeTrackerSQLiteDAO d;
 
     public WorkTimeTracker(WorkTimeTrackerDAO dao) {
         this.dao = dao;
@@ -22,6 +17,7 @@ public class WorkTimeTracker {
 
     public User loginPerson(String username, String password) throws PersonDoesNotExistException, InvalidCredentialException {
         User user = dao.getUserByUsername(username);
+        System.out.println(user);
 
         // Check if user exists
         // throw @PersonDoesNotExistException if user is not found
@@ -34,7 +30,4 @@ public class WorkTimeTracker {
         return user;
     }
 
-    public ArrayList<Project> getAllProjects() throws SQLException {
-        return d.getAllProjects();
-    }
 }

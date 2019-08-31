@@ -1,7 +1,5 @@
 package sample.models;
 
-import java.util.Date;
-
 public class Position {
     private int id;
     private String name;
@@ -25,29 +23,13 @@ public class Position {
         this.name = name;
     }
 
-    public Date getBeginningDate() {
-        return beginningDate;
-    }
-
-    public void setBeginningDate(Date beginningDate) {
-        this.beginningDate = beginningDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Position(int id, String name, Date beginningDate, Date endDate) {
+    public Position(int id, String name) {
         this.id = id;
         this.name = name;
-        this.beginningDate = beginningDate;
-        this.endDate = endDate;
     }
 
-    private Date beginningDate;
-    private Date endDate;
+    @Override
+    public String toString() {
+        return "Position: " + name + "\n";
+    }
 }

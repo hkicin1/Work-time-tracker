@@ -1,12 +1,8 @@
 package sample.models;
 
-import java.time.LocalDate;
-
 public class Project {
     private int id;
     private String name;
-    private LocalDate startDate;
-    private LocalDate finishDate;
     private int activity;
 
     public Project() {
@@ -28,22 +24,6 @@ public class Project {
         this.name = name;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getFinishDate() {
-        return finishDate;
-    }
-
-    public void setFinishDate(LocalDate finishDate) {
-        this.finishDate = finishDate;
-    }
-
     public int getActivity() {
         return activity;
     }
@@ -52,11 +32,9 @@ public class Project {
         this.activity = activity;
     }
 
-    public Project(int id, String name, LocalDate startDate, LocalDate finishDate, int activity) {
+    public Project(int id, String name, int activity) {
         this.id = id;
         this.name = name;
-        this.startDate = startDate;
-        this.finishDate = finishDate;
         this.activity = activity;
     }
 }

@@ -3,52 +3,42 @@ package sample.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.models.Project;
-import sample.utilities.WorkTimeTracker;
+import sample.models.ProjectDAO;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 
-public class SelectProjectController implements Initializable {
+public class SelectProjectController {
     public Button btnExit;
     public Button btnStart;
-    public ListView projectListView;
+    public TableView tableList;
+    public TableColumn nameCol;
 
     private ObservableList<Project> allProjectsObs = FXCollections.observableArrayList();
-    WorkTimeTracker dao = WorkTimeTracker.createWorkTimeTracker();
+    private ProjectDAO dao;
 
 
-    public void exitAction(ActionEvent actionEvent) {
-        Stage stage = (Stage) btnExit.getScene().getWindow();
-        stage.close();
+    public SelectProjectController() {
+        dao = dao.getInst();
+        allProjectsObs = FXCollections.observableArrayList(dao.listProjects());
     }
 
-    public void start(){
-        initialize(null, null);
-    }
+    @FXML
+    public void initialize() {
+        tableList.setItems(allProjectsObs);
+        nameCol.setCellValueFactory(new PropertyValueFactory("name"));
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            ArrayList<Project> tmpProjectList = dao.getAllProjects();
-            allProjectsObs.addAll(tmpProjectList);
-
-            projectListView.setItems(allProjectsObs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public void startAction(ActionEvent actionEvent) {
@@ -65,5 +55,10 @@ public class SelectProjectController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void exitAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        stage.close();
     }
 }

@@ -49,11 +49,11 @@ public class LoginController implements Initializable {
         password = pwdPassword.getText();
 
         if (username.isEmpty() || username == null) {
-            lblConfirmation.setText("Unesite username");
+            lblConfirmation.setText("Unesite username!");
 
             return;
         } else if (password == null || password.isEmpty()) {
-            lblConfirmation.setText("Unesite password");
+            lblConfirmation.setText("Unesite password!");
             return;
         }
 
@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
             if (user.getIsAdmin() == 1) openAdminPannel();
             else openEmployeePannel();
         } catch (PersonDoesNotExistException e) {
-            lblConfirmation.setText("User ne postoji");
+            lblConfirmation.setText("User ne postoji!");
             txtUsername.clear();
             pwdPassword.clear();
         } catch (InvalidCredentialException e) {

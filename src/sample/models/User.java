@@ -7,17 +7,19 @@ public class User {
     private String address;
     private Integer postalNumber;
     private String city;
+    private Position position;
     private String userName;
     private String password;
     private int isAdmin;
 
-    public User(int id, String name, String surname, String address, Integer postalNumber, String city, String userName, String password, int isAdmin) {
+    public User(int id, String name, String surname, String address, Integer postalNumber, String city, Position position, String userName, String password, int isAdmin) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.postalNumber = postalNumber;
         this.city = city;
+        this.position = position;
         this.userName = userName;
         this.password = password;
         this.isAdmin = isAdmin;
@@ -88,5 +90,26 @@ public class User {
 
     public void setIsAdmin(int isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User: " + name + " " + surname + "\n";
     }
 }
