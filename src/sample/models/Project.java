@@ -37,4 +37,9 @@ public class Project {
         this.name = name;
         this.activity = activity;
     }
+
+    @Override
+    public String toString() {
+        return "Project: " + name + "\n";
+    }
 }

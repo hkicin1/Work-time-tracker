@@ -26,6 +26,7 @@ public class SelectProjectController {
     public TableColumn nameCol;
 
     private ObservableList<Project> allProjectsObs = FXCollections.observableArrayList();
+    public Project selectedProject = new Project();
     private ProjectDAO dao;
 
 
@@ -38,10 +39,13 @@ public class SelectProjectController {
     public void initialize() {
         tableList.setItems(allProjectsObs);
         nameCol.setCellValueFactory(new PropertyValueFactory("name"));
-
     }
 
     public void startAction(ActionEvent actionEvent) {
+        int index = tableList.getSelectionModel().getFocusedIndex();
+        selectedProject = FXCollections.observableArrayList(dao.listProjects()).get(index);
+        setSelectedProject(selectedProject);
+
         Stage stage = new Stage();
         Parent root = null;
         try {
@@ -60,5 +64,13 @@ public class SelectProjectController {
     public void exitAction(ActionEvent actionEvent) {
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
+    }
+
+    public Project getSelectedProject() {
+        return selectedProject;
+    }
+
+    public void setSelectedProject(Project selectedProject) {
+        this.selectedProject = selectedProject;
     }
 }
