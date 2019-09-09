@@ -52,7 +52,7 @@ public class UserDAO {
     }
 
     public boolean addUser(User user){
-        String sql = "insert into user values(?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -62,13 +62,16 @@ public class UserDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
+            preparedStatement.setInt(1, id);
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getSurname());
             preparedStatement.setString(4, user.getAddress());
             preparedStatement.setInt(5, user.getPostalNumber());
             preparedStatement.setString(6, user.getCity());
-            preparedStatement.setString(7, user.getUserName());
-            preparedStatement.setInt(8, user.getIsAdmin());
+            preparedStatement.setInt(7, user.getPosition().getId());
+            preparedStatement.setString(8, user.getUserName());
+            preparedStatement.setString(9,user.getPassword());
+            preparedStatement.setInt(10, user.getIsAdmin());
             preparedStatement.execute();
             preparedStatement.close();
             return true;
@@ -133,5 +136,21 @@ public class UserDAO {
     }
 
 
+    public List<Position> listPositions(){
+        String sql = "SELECT * FROM position";
+        List<Position> positonList = new ArrayList<>();
+        try {
+            ResultSet rs = this.connection.prepareStatement(sql).executeQuery();
 
+            while (rs.next()){
+                Position position = new Position();
+                position.setId(rs.getInt(1));
+                position.setName(rs.getString(2));
+                positonList.add(position);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return positonList;
+    }
 }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10.0" prefHeight="375.0" prefWidth="334.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AddEmployeeController">
+    <stylesheets>
+        <URL value="@/css/style.css" />
+    </stylesheets>
+    <columnConstraints>
+        <ColumnConstraints maxWidth="100" minWidth="100" />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+        <RowConstraints />
+        <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <Label text="Name">
+            <GridPane.margin>
+                <Insets left="10.0" top="10.0" />
+            </GridPane.margin></Label>
+        <TextField fx:id="fldName" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets right="10.0" top="10.0" />
+            </GridPane.margin></TextField>
+        <Label text="Surname:" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+        <TextField fx:id="fldSurname" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin></TextField>
+        <Label text="Address:" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+        <TextField fx:id="fldAddress" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin></TextField>
+        <Label text="Postal number:" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+        <TextField fx:id="fldPostalNumber" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin></TextField>
+        <Label text="City:" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+        <TextField fx:id="fldCity" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin></TextField>
+        <Label text="Position:" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+        <ChoiceBox fx:id="cbPosition" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin></ChoiceBox>
+        <Label text="Username:" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+        <PasswordField fx:id="fldUsername" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin></PasswordField>
+        <Label text="Password:" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+        <PasswordField fx:id="fldPassword" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <GridPane.margin>
+                <Insets right="10.0" />
+            </GridPane.margin></PasswordField>
+        <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="265.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+            <buttons>
+                <Button fx:id="btnOk" mnemonicParsing="true" onAction="#okAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="O_k" />
+                <Button fx:id="btnCancel" mnemonicParsing="true" onAction="#cancelAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="E_xit" />
+            </buttons>
+            <GridPane.margin>
+                <Insets bottom="10.0" right="10.0" top="5.0" />
+            </GridPane.margin>
+        </ButtonBar>
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</GridPane>

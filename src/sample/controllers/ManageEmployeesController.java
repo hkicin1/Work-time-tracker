@@ -4,36 +4,34 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.models.Position;
 import sample.models.User;
 import sample.models.UserDAO;
-import sample.utilities.WorkTimeTrackerSQLiteDAO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 import java.util.Optional;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 
 public class ManageEmployeesController {
     public Button btnEnd;
-    public TextField fldName, fldSurname, fldAddress;
-    public TextField fldPostalNumber, fldCity;
-    public ChoiceBox cbPosition;
-    public TextField fldUsername, fldPassword;
+
     public TableView<User> tblEmployees;
 
     public TableColumn nameCol;
     public TableColumn surnameCol;
 
     private UserDAO daoUser;
-    private WorkTimeTrackerSQLiteDAO daoWtt;
     private ObservableList<User> userListObs;
     private User user;
 
-    private List<Position> allPositions = new ArrayList<Position>();
 
     public ManageEmployeesController() {
         daoUser = UserDAO.getInst();
@@ -48,20 +46,6 @@ public class ManageEmployeesController {
         tblEmployees.setItems(userListObs);
         nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         surnameCol.setCellValueFactory(new PropertyValueFactory("surname"));
-
-        //addPositionChoices();
-
-        user = tblEmployees.getSelectionModel().getSelectedItem();
-        if (user != null) {
-            fldName.setText(user.getName());
-            fldSurname.setText(user.getSurname());
-            fldAddress.setText(user.getAddress());
-            fldPostalNumber.setText(String.valueOf(user.getPostalNumber()));
-            fldCity.setText(user.getCity());
-            //cbPosition.setItems;
-            fldUsername.setText(user.getUserName());
-            fldPassword.setText(user.getPassword());
-        }
     }
 
 
@@ -73,7 +57,7 @@ public class ManageEmployeesController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete confirmation");
         alert.setHeaderText("Deleting user " + user.getName());
-        alert.setContentText("Are you sure you want to delete user " + user.getName() + "?");
+        alert.setContentText("Are you sure you want to delete user " + user.getName() + " " + user.getSurname() + "?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
@@ -84,30 +68,19 @@ public class ManageEmployeesController {
 
     public void exitAction(ActionEvent actionEvent) {
        Stage stage = (Stage) btnEnd.getScene().getWindow();
-      stage.close();
+       stage.close();
     }
 
-    public void addEmployeeAction(ActionEvent actionEvent) {
-        tblEmployees.getItems().add(new User());
-        tblEmployees.getSelectionModel().selectLast();
-
-
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Adding confirmation");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            daoUser.addUser(user);
-        }
+    public void addEmployeeAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addEmployee.fxml"));
+        root = loader.load();
+        stage.setTitle("Adding new employee");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
-   /* private void addPositionChoices() {
-        try {
-            allPositions = daoWtt.getAllPositions();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ObservableList<Position> list = FXCollections.observableArrayList(allPositions);
-        cbPosition.setItems(list);
-    }*/
 }

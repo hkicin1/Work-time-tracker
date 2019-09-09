@@ -30,6 +30,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position: " + name + "\n";
+        return  name;
     }
 }

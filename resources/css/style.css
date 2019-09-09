@@ -5,6 +5,10 @@
    -fx-control-inner-background: lightpink;
 }
 
+.poljeSeProvjerava {
+    -fx-control-inner-background: yellow;
+}
+
 #btnAdd {
     -fx-graphic: url("/img/list-add.png");
 }

@@ -26,7 +26,7 @@ public class SelectProjectController {
     public TableColumn nameCol;
 
     private ObservableList<Project> allProjectsObs = FXCollections.observableArrayList();
-    public Project selectedProject = new Project();
+    public Project selectedProject;
     private ProjectDAO dao;
 
 
@@ -43,7 +43,7 @@ public class SelectProjectController {
 
     public void startAction(ActionEvent actionEvent) {
         int index = tableList.getSelectionModel().getFocusedIndex();
-        selectedProject = FXCollections.observableArrayList(dao.listProjects()).get(index);
+        selectedProject = (Project) tableList.getItems().get(index);
         setSelectedProject(selectedProject);
 
         Stage stage = new Stage();
