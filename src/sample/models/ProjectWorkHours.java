@@ -9,8 +9,8 @@ public class ProjectWorkHours extends WorkHours {
         this.projectId = projectId;
     }
 
-    public ProjectWorkHours(int id, User userId, LocalDate date, String workHours, Project projectId) {
-        super(id, userId, date, workHours);
+    public ProjectWorkHours(int id, User userId, LocalDate date, String startedWorkind, String finishedWorking, String workHours, Project projectId) {
+        super(id, userId, date, startedWorkind, finishedWorking, workHours);
         this.projectId = projectId;
     }
 

@@ -4,8 +4,10 @@ import java.time.LocalDate;
 
 public class WorkHours {
     private int id;
-    private User userId;
+    private User user;
     private LocalDate date;
+    private String startedWorking;
+    private String finishedWorking;
     private String workHours;
 
     public WorkHours() {
@@ -20,12 +22,12 @@ public class WorkHours {
     }
 
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDate getDate() {
@@ -44,10 +46,28 @@ public class WorkHours {
         this.workHours = workHours;
     }
 
-    public WorkHours(int id, User userId, LocalDate date, String workHours) {
+    public String getStartedWorking() {
+        return startedWorking;
+    }
+
+    public void setStartedWorking(String startedWorking) {
+        this.startedWorking = startedWorking;
+    }
+
+    public String getFinishedWorking() {
+        return finishedWorking;
+    }
+
+    public void setFinishedWorking(String finishedWorking) {
+        this.finishedWorking = finishedWorking;
+    }
+
+    public WorkHours(int id, User user, LocalDate date, String startedWorking, String finishedWorking, String workHours) {
         this.id = id;
-        this.userId = userId;
+        this.user = user;
         this.date = date;
+        this.startedWorking = startedWorking;
+        this.finishedWorking = finishedWorking;
         this.workHours = workHours;
     }
 }

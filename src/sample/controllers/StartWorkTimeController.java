@@ -2,8 +2,11 @@ package sample.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
+import sample.models.User;
 import sample.models.WorkHours;
+import sample.models.WorkHoursDAO;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -16,34 +19,30 @@ public class StartWorkTimeController {
     public int timeOfBeginningInSeconds = 0;
     public int timeOfEndingInSeconds = 0;
     public int workTimeInSeconds = 0;
-    public WorkHours wh = null;
+
+    public WorkHoursDAO dao;
+    private WorkHours workHours;
     public Label lblWorking;
 
 
-    public String secondsToHMS(int seconds) {
-        int hours = seconds / 3600;
-        seconds = seconds - hours * 3600;
-        int minutes = seconds / 60;
-        seconds = seconds - minutes * 60;
-        String time = hours + ":" + minutes + ":" + seconds;
-        return time;
-    }
     public void startWorkingAction(ActionEvent actionEvent) {
-        beginning = LocalDateTime.now();
-        timeBgn = beginning.toLocalTime();
-        lblWorking.setText("Počeli ste raditi!");
+        lblWorking.setText("You just started working. Good luck!");
+        if (workHours == null) workHours = new WorkHours();
+        workHours.setId(dao.getIdWorkHours());
+        workHours.setUser(); //kako da zapamtim User-a koji se logovao da bi mogla njega dodati
+        workHours.setDate(LocalDate.now());
+        workHours.setStartedWorking(LocalTime.now().toString());
+        workHours.setFinishedWorking(null);
+        workHours.setWorkHours(null);
+        dao.addWorkHours(workHours);
+
     }
 
     public void endWorkingAction(ActionEvent actionEvent) {
-        lblWorking.setText("Prestali ste raditi!");
-        ending = LocalDateTime.now();
-        timeEnd = ending.toLocalTime();
-        wh.setDate(ending.toLocalDate());
-        timeOfBeginningInSeconds = timeBgn.getHour() * 3600 + timeBgn.getMinute() * 60 + timeBgn.getSecond();
-        timeOfEndingInSeconds = timeEnd.getHour() * 3600 + timeEnd.getMinute() * 60 + timeEnd.getSecond();
-        workTimeInSeconds = timeOfEndingInSeconds - timeOfBeginningInSeconds;
-        wh.setWorkHours(secondsToHMS(workTimeInSeconds));
-        System.out.println(wh.getWorkHours());
+        if (workHours == null) lblWorking.setText("You can not stop working if you have not even started!");
+        lblWorking.setText("You just stopped working, enough for today. See you soon!");
+        int userId
+        dao.updateFinishedWorkingTime(LocalTime.now(), userId); // ???....
     }
 
 }
