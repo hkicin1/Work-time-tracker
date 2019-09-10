@@ -12,7 +12,7 @@ public class StartProjectTimeController {
 
     @FXML
     public void initialize() {
-        currentProjectLabel.setText(controller.getSelectedProject().getName());
+//        currentProjectLabel.setText(controller.getSelectedProject().getName());
     }
     public void startAction(ActionEvent actionEvent) {
 

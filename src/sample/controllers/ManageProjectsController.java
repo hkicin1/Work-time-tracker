@@ -4,13 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.models.Project;
 import sample.models.ProjectDAO;
+
+import java.io.IOException;
+import java.util.Optional;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class ManageProjectsController {
     public Button btnEnd;
@@ -39,22 +46,31 @@ public class ManageProjectsController {
         stage.close();
     }
 
-    public void addProjectAction(ActionEvent actionEvent) {
+    public void addProjectAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProject.fxml"));
+        root = loader.load();
+        stage.setTitle("Adding new project");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     public void deleteProjectAction(ActionEvent actionEvent) {
-        /*Project project = tblEmployees.getSelectionModel().getSelectedItem();
-        if (user == null) return;
+        Project project = tableProjects.getSelectionModel().getSelectedItem();
+        if (project == null) return;
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete confirmation");
-        alert.setHeaderText("Deleting user " + user.getName());
-        alert.setContentText("Are you sure you want to delete user " + user.getName() + "?");
+        alert.setHeaderText("Deleting project " + project.getName());
+        alert.setContentText("Are you sure you want to delete project " + project.getName() + "?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            daoUser.removeUser(user);
-            userListObs.setAll(daoUser.listUsers());
-        }*/
+            daoProject.removeProject(project);
+            projectListObs.setAll(daoProject.listProjects());
+        }
     }
 }

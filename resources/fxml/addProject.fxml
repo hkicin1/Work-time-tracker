@@ -4,46 +4,57 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10.0" prefHeight="177.0" prefWidth="501.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AddProjectController">
+<GridPane alignment="center" hgap="10.0" prefHeight="194.0" prefWidth="351.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AddProjectController">
     <stylesheets>
         <URL value="@/css/style.css" />
     </stylesheets>
     <columnConstraints>
-        <ColumnConstraints maxWidth="200" minWidth="200" />
-        <ColumnConstraints maxWidth="100" minWidth="100" />
-        <ColumnConstraints />
+        <ColumnConstraints maxWidth="200" minWidth="100.0" />
+      <ColumnConstraints maxWidth="200.0" minWidth="180.0" prefWidth="100.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
-        <RowConstraints maxHeight="55.0" minHeight="0.0" prefHeight="13.0" />
-        <RowConstraints maxHeight="55.0" minHeight="0.0" prefHeight="42.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
     </rowConstraints>
     <children>
-
         <ButtonBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="469.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER">
             <buttons>
-                <Button fx:id="btnAdd" mnemonicParsing="true" onAction="#addProjectAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Add" />
-                <Button fx:id="btnDelete" mnemonicParsing="true" onAction="#deleteProjectAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="_Delete" />
+                <Button fx:id="btnOk" mnemonicParsing="true" onAction="#okAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="O_k" />
                 <Button fx:id="btnEnd" mnemonicParsing="true" onAction="#exitAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="E_xit" />
             </buttons>
             <GridPane.margin>
-                <Insets bottom="10.0" right="10.0" top="20.0" />
+                <Insets bottom="20.0" right="20.0" top="70.0" />
             </GridPane.margin>
         </ButtonBar>
-        <TableView fx:id="tableProjects" prefHeight="200.0" prefWidth="200.0">
-            <columns>
-                <TableColumn fx:id="nameCol" prefWidth="189.0" sortable="true" text="Name" />
-            </columns>
-            <GridPane.margin>
-                <Insets left="10.0" top="10.0" />
-            </GridPane.margin>
-        </TableView>
+      <Label text="Project name:">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <TextField fx:id="fldProject" prefHeight="25.0" prefWidth="215.0" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets right="20.0" />
+         </GridPane.margin></TextField>
+      <CheckBox fx:id="cbActivity" mnemonicParsing="false" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label text="Active:" GridPane.rowIndex="1">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
     </children>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

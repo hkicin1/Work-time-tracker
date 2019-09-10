@@ -63,7 +63,7 @@ public class ProjectDAO {
             }
             preparedStatement.setInt(1,id);
             preparedStatement.setString(2, project.getName());
-            preparedStatement.setInt(5, project.getActivity());
+            preparedStatement.setInt(3, project.getActivity());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             return true;
