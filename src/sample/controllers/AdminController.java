@@ -51,6 +51,8 @@ public class AdminController {
         stage.showAndWait();
     }
 
+    //TODO: Work hours report!
+
     public void helpAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         Parent root = null;

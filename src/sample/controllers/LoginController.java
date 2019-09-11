@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
             stage.close();
             setRegisteredUser(user);
             if (user.getIsAdmin() == 1) openAdminPannel();
-            else openEmployeePannel();
+            else if (user.getIsAdmin() == 0 && user.getIsAdmin() != 1) openEmployeePannel();
         } catch (PersonDoesNotExistException e) {
             lblConfirmation.setText("User ne postoji!");
             txtUsername.clear();

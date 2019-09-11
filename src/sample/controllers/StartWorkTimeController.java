@@ -2,7 +2,6 @@ package sample.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
-import sample.models.User;
 import sample.models.WorkHours;
 import sample.models.WorkHoursDAO;
 
@@ -29,7 +28,8 @@ public class StartWorkTimeController {
         lblWorking.setText("You just started working. Good luck!");
         if (workHours == null) workHours = new WorkHours();
         workHours.setId(dao.getIdWorkHours());
-        workHours.setUser(); //kako da zapamtim User-a koji se logovao da bi mogla njega dodati
+        // TODO: Dodati user-a za određeno vrijeme????
+        //workHours.setUser(); //kako da zapamtim User-a koji se logovao da bi mogao njega dodati
         workHours.setDate(LocalDate.now());
         workHours.setStartedWorking(LocalTime.now().toString());
         workHours.setFinishedWorking(null);
@@ -41,7 +41,7 @@ public class StartWorkTimeController {
     public void endWorkingAction(ActionEvent actionEvent) {
         if (workHours == null) lblWorking.setText("You can not stop working if you have not even started!");
         lblWorking.setText("You just stopped working, enough for today. See you soon!");
-        int userId
+        int userId = 1;
         dao.updateFinishedWorkingTime(LocalTime.now(), userId); // ???....
     }
 

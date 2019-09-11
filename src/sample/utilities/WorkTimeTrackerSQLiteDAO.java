@@ -112,7 +112,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         input.close();
 
     }
-
+/*
 
     @Override
     public void addUser(User p) {
@@ -151,10 +151,10 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
             }
         }
 
-    }
+    }*/
 
 
-    public Date convertToDate(LocalDate dateToConvert) {
+   /* public Date convertToDate(LocalDate dateToConvert) {
         return Date.valueOf(dateToConvert);
     }
 
@@ -191,7 +191,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         }
     }
 
-
+*/
     @Override
     public boolean checkIsPasswordValid(String username, String password) {
         PreparedStatement preparedStatement = null;

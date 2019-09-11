@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -27,95 +35,154 @@
                 </Label>
                 <Separator>
                <VBox.margin>
-                  <Insets left="10.0" />
+                  <Insets left="10.0" right="10.0" />
                </VBox.margin></Separator>
-                <HBox alignment="CENTER">
-                    <padding>
-                        <Insets top="10.0" />
-                    </padding>
-                </HBox>
-                <Label id="clock" fx:id="timeLabel" text="00:00">
-                    <font>
-                        <Font name="Tw Cen MT" size="96.0" />
-                    </font>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-                </Label>
-                <HBox alignment="CENTER">
+                <HBox alignment="CENTER" cache="true" cacheHint="QUALITY" layoutX="5.0" layoutY="43.0" prefHeight="94.0" prefWidth="389.0">
                     <children>
-                        <Button fx:id="btnStart" mnemonicParsing="false" onAction="#startAction" prefHeight="46.0" prefWidth="183.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Start Working!">
+                        <Label fx:id="secondsLabel" alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="00:00" textAlignment="CENTER">
                             <font>
-                                <Font name="Tw Cen MT" size="25.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="btnStop" mnemonicParsing="false" onAction="#stopAction" prefHeight="46.0" prefWidth="183.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Break!">
-                            <font>
-                                <Font name="Tw Cen MT" size="25.0" />
+                                <Font name="Segoe UI" size="77.0" />
                             </font>
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets top="10.0" />
                      </HBox.margin>
-                        </Button>
+                        </Label>
+                        <Label fx:id="millsLabel" alignment="CENTER" contentDisplay="CENTER" text="00" textAlignment="CENTER">
+                            <font>
+                                <Font name="Segoe UI" size="45.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <effect>
+                        <Reflection fraction="0.54" topOpacity="0.39">
+                            <input>
+                                <Bloom threshold="0.93">
+                                    <input>
+                                        <Glow level="1.0" />
+                                    </input>
+                                </Bloom>
+                            </input>
+                        </Reflection>
+                    </effect>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <ToggleButton fx:id="mainButton" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#startAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-radius: 7; -fx-border-radius: 7; -fx-border-width: 2; -fx-border-color: #00bf0f;" text="Start">
+                            <effect>
+                                <DropShadow color="#00bf0f" height="21.55" radius="10.6325" width="22.98">
+                                    <input>
+                                        <InnerShadow choke="0.33" color="#00bf0f" height="40.393125" radius="20.28328125" width="42.74" />
+                                    </input>
+                                </DropShadow>
+                            </effect>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </ToggleButton>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <ProgressIndicator fx:id="progressIndicator" focusTraversable="false" layoutY="19.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="219.0" visible="false">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <effect>
+                                        <Blend mode="ADD">
+                                            <topInput>
+                                                <Glow level="0.48">
+                                                    <input>
+                                                        <ColorAdjust brightness="1.0" contrast="1.0" hue="-1.0" saturation="-1.0" />
+                                                    </input>
+                                                </Glow>
+                                            </topInput>
+                                        </Blend>
+                                    </effect>
+                                </ProgressIndicator>
+                            </children>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Pane>
+                        <ToggleButton fx:id="breakButton" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#lunchAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-radius: 7; -fx-border-radius: 7; -fx-border-width: 2; -fx-border-color: #00bf0f;" text="Lunch">
+                            <effect>
+                                <DropShadow color="#00bf0f" height="21.55" radius="10.6325" width="22.98">
+                                    <input>
+                                        <InnerShadow choke="0.33" color="#00bf0f" height="40.393125" radius="20.28328125" width="42.74" />
+                                    </input>
+                                </DropShadow>
+                            </effect>
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </ToggleButton>
+                        <Label fx:id="secondsLabelLunch" alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="00:00" textAlignment="CENTER">
+                            <font>
+                                <Font name="Segoe UI" size="30.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <effect>
+                                <Bloom threshold="0.90">
+                                    <input>
+                                        <Glow level="1.0" />
+                                    </input>
+                                </Bloom>
+                            </effect>
+                        </Label>
+                        <Label fx:id="millsLabelLunch" alignment="CENTER" contentDisplay="CENTER" text="00" textAlignment="CENTER">
+                            <font>
+                                <Font name="Segoe UI" size="10.0" />
+                            </font>
+                            <effect>
+                                <Bloom threshold="0.90">
+                                    <input>
+                                        <Glow level="1.0" />
+                                    </input>
+                                </Bloom>
+                            </effect>
+                        </Label>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <ProgressIndicator fx:id="progressIndicatorLunch" focusTraversable="false" layoutY="19.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="100.0" visible="false">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                    <effect>
+                                        <Blend mode="ADD">
+                                            <topInput>
+                                                <Glow level="0.48">
+                                                    <input>
+                                                        <ColorAdjust brightness="1.0" contrast="1.0" hue="-1.0" saturation="-1.0" />
+                                                    </input>
+                                                </Glow>
+                                            </topInput>
+                                        </Blend>
+                                    </effect>
+                                </ProgressIndicator>
+                            </children>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Pane>
+
                     </children>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets bottom="20.0" top="70.0" />
                </VBox.margin>
                 </HBox>
             </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
         </VBox>
     </center>
-    <right>
-        <VBox prefHeight="375.0" prefWidth="167.0" BorderPane.alignment="CENTER">
-            <children>
-                <ListView fx:id="timeLogListView" prefHeight="461.0" prefWidth="167.0">
-               <VBox.margin>
-                  <Insets right="10.0" top="10.0" />
-               </VBox.margin></ListView>
-                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <Label text="Totals:">
-                            <font>
-                                <Font name="Tw Cen MT" size="18.0" />
-                            </font>
-                        </Label>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                            <children>
-                                <Label id="timeToday" prefHeight="24.0" prefWidth="35.0" text="Work:" textAlignment="CENTER">
-                                    <font>
-                                        <Font name="Tw Cen MT" size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="totalWorkTimeLabel" prefHeight="23.0" prefWidth="49.0" text="00:00">
-                                    <font>
-                                        <Font name="Tw Cen MT" size="20.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                            <children>
-                                <Label text="Break:">
-                                    <font>
-                                        <Font name="Tw Cen MT" size="14.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="totalBreakTimeLabel" prefHeight="23.0" prefWidth="49.0" text="00:00">
-                                    <font>
-                                        <Font name="Tw Cen MT" size="20.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                    </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" right="10.0" />
-               </VBox.margin>
-                </VBox>
-            </children>
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
-        </VBox>
-    </right>
 </BorderPane>

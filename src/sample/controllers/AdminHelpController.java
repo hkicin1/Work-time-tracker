@@ -20,14 +20,12 @@ public class AdminHelpController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lblHelpAdmin.setText("By clicking on manage employees button, \n" +
-                "you will be able to add new employee, \n" +
-                "delete another, or edit data.\n\n"
-                + "By clicking on manage project button, \n" +
-                "you will be able to add new project or\n " +
-                "delete existing.\n\n"
-                + "By clicking on reports button, \n" +
-                "you will be able to see work hours report.\n");
+        lblHelpAdmin.setText("By clicking on manage employees button, you will be able to add \n" +
+                "new employee, delete another, or edit data.\n\n"
+                + "By clicking on manage project button, you will be able to add \n" +
+                "new project or delete existing.\n\n"
+                + "By clicking on reports button, you will see work hours " +
+                "report.\n");
     }
 
 }
