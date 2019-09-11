@@ -14,7 +14,6 @@
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -79,32 +78,28 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                             <HBox.margin>
-                                <Insets />
+                                <Insets left="70.0" />
                             </HBox.margin>
                         </ToggleButton>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <ProgressIndicator fx:id="progressIndicator" focusTraversable="false" layoutY="19.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="219.0" visible="false">
-                                    <opaqueInsets>
-                                        <Insets />
-                                    </opaqueInsets>
-                                    <effect>
-                                        <Blend mode="ADD">
-                                            <topInput>
-                                                <Glow level="0.48">
-                                                    <input>
-                                                        <ColorAdjust brightness="1.0" contrast="1.0" hue="-1.0" saturation="-1.0" />
-                                                    </input>
-                                                </Glow>
-                                            </topInput>
-                                        </Blend>
-                                    </effect>
-                                </ProgressIndicator>
-                            </children>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                        </Pane>
+                          <ProgressIndicator fx:id="progressIndicator" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="30.0" visible="false">
+                              <opaqueInsets>
+                                  <Insets />
+                              </opaqueInsets>
+                              <effect>
+                                  <Blend mode="ADD">
+                                      <topInput>
+                                          <Glow level="0.48">
+                                              <input>
+                                                  <ColorAdjust brightness="1.0" contrast="1.0" hue="-1.0" saturation="-1.0" />
+                                              </input>
+                                          </Glow>
+                                      </topInput>
+                                  </Blend>
+                              </effect>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                          </ProgressIndicator>
                         <ToggleButton fx:id="breakButton" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#lunchAction" prefHeight="25.0" prefWidth="81.0" style="-fx-background-radius: 7; -fx-border-radius: 7; -fx-border-width: 2; -fx-border-color: #00bf0f;" text="Lunch">
                             <effect>
                                 <DropShadow color="#00bf0f" height="21.55" radius="10.6325" width="22.98">
@@ -117,7 +112,7 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                             <HBox.margin>
-                                <Insets />
+                                <Insets left="150.0" />
                             </HBox.margin>
                         </ToggleButton>
                         <Label fx:id="secondsLabelLunch" alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="00:00" textAlignment="CENTER">
@@ -147,29 +142,25 @@
                                 </Bloom>
                             </effect>
                         </Label>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <ProgressIndicator fx:id="progressIndicatorLunch" focusTraversable="false" layoutY="19.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="100.0" visible="false">
-                                    <opaqueInsets>
-                                        <Insets />
-                                    </opaqueInsets>
-                                    <effect>
-                                        <Blend mode="ADD">
-                                            <topInput>
-                                                <Glow level="0.48">
-                                                    <input>
-                                                        <ColorAdjust brightness="1.0" contrast="1.0" hue="-1.0" saturation="-1.0" />
-                                                    </input>
-                                                </Glow>
-                                            </topInput>
-                                        </Blend>
-                                    </effect>
-                                </ProgressIndicator>
-                            </children>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                        </Pane>
+                          <ProgressIndicator fx:id="progressIndicatorLunch" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="30.0" visible="false">
+                              <opaqueInsets>
+                                  <Insets />
+                              </opaqueInsets>
+                              <effect>
+                                  <Blend mode="ADD">
+                                      <topInput>
+                                          <Glow level="0.48">
+                                              <input>
+                                                  <ColorAdjust brightness="1.0" contrast="1.0" hue="-1.0" saturation="-1.0" />
+                                              </input>
+                                          </Glow>
+                                      </topInput>
+                                  </Blend>
+                              </effect>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                          </ProgressIndicator>
 
                     </children>
                <VBox.margin>
