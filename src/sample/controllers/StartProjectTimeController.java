@@ -29,6 +29,7 @@ public class StartProjectTimeController {
     private double xOffset = 0;
     private double yOffset = 0;
     private StopWatch stopWatch = new StopWatch();
+    private StopWatch stopWatchLunch = new StopWatch();
     private Color glowingRed = Color.web("ff2800");
     private Color glowingGreen = Color.web("00bf0f");
     private DropShadow dropShadow = new DropShadow(10.81, glowingRed);
@@ -56,12 +57,12 @@ public class StartProjectTimeController {
     }
     public void lunchAction(ActionEvent actionEvent) {
         if (breakButton.getText().equals("Lunch")) {
-            stopWatch.run(secondsLabelLunch, millsLabelLunch);
+            stopWatchLunch.run(secondsLabelLunch, millsLabelLunch);
             breakButton.setText("Stop");
             makeButtonRed(breakButton, dropShadow, innerShadow);
             progressIndicatorLunch.setVisible(true);
         } else if (breakButton.getText().equals("Stop")) {
-            stopWatch.stop();
+            stopWatchLunch.stop();
             breakButton.setText("Lunch");
             makeButtonGreen(breakButton, dropShadow, innerShadow);
             progressIndicatorLunch.setVisible(false);
