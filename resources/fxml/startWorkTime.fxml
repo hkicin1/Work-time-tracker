@@ -38,7 +38,7 @@
                         <Insets top="20.0" />
                     </VBox.margin>
                <children>
-                  <Button fx:id="btnStartStop" mnemonicParsing="false" onAction="#startWorkingAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Start Working!">
+                  <Button fx:id="btnStart" mnemonicParsing="false" onAction="#startWorkingAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Start Working!">
                      <font>
                         <Font name="Tw Cen MT" size="25.0" />
                      </font>
