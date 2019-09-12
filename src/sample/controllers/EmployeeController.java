@@ -18,6 +18,10 @@ public class EmployeeController {
     private User registeredEmployee;
     public Label lblUsername;
 
+    public EmployeeController(User user) {
+        this.registeredEmployee = user;
+    }
+
     public void setRegisteredEmployee(User a) {
         this.registeredEmployee = a;
     }
@@ -27,6 +31,8 @@ public class EmployeeController {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectProject.fxml"));
+            SelectProjectController controller = new SelectProjectController(registeredEmployee);
+            loader.setController(controller);
             root = loader.load();
             stage.setResizable(false);
             stage.setTitle("Select project");
@@ -43,8 +49,11 @@ public class EmployeeController {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/startWorkTime.fxml"));
+            StartWorkTimeController controller = new StartWorkTimeController(registeredEmployee);
+            loader.setController(controller);
             root = loader.load();
             stage.setResizable(false);
+            controller.setRegisteredEmployee(registeredEmployee);
             stage.setTitle("Start working");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);

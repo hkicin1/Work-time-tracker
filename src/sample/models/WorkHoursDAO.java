@@ -1,10 +1,16 @@
 package sample.models;
 
+import javax.naming.InsufficientResourcesException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.MINUTES;
 
 public class WorkHoursDAO {
     private static WorkHoursDAO inst;
@@ -56,7 +62,10 @@ public class WorkHoursDAO {
         try {
             String sql = "SELECT MAX(id)+1 FROM work_hours";
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            id = getIdWorkHours.executeUpdate();
+            ResultSet rs = getIdWorkHours.executeQuery();
+            while(rs.next()){
+                id = rs.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -80,7 +89,7 @@ public class WorkHoursDAO {
             }
             preparedStatement.setInt(1,id);
             preparedStatement.setInt(2, workHours.getUser().getId());
-            preparedStatement.setDate(3,convertToDateViaSqlDate(workHours.getDate()));
+            preparedStatement.setDate(3, convertToDateViaSqlDate(workHours.getDate()));
             preparedStatement.setString(4, workHours.getStartedWorking());
             preparedStatement.setString(5, workHours.getFinishedWorking());
             preparedStatement.setString(6, workHours.getWorkHours());
@@ -107,28 +116,58 @@ public class WorkHoursDAO {
         }
     }
 */
-    public void updateFinishedWorkingTime(LocalTime finishedWorking, int userId){
-        String sql = "update work_hours set finished_working = ? work_hours = ? where user_id = ?";
-        String sql1 = "select started_working from work_hours where user_id = ?";
-        String sql2 = "select finished_working from work_hours where user_id = ?";
+    public void updateFinishedWorkingTime(LocalTime finishedWorking, int userId, LocalDate date){
+        String sql = "update work_hours set finished_working = ? where user_id = ? and date = ?";
+        String sqlUpdateWorkHours = "update work_hours set work_hours = ? where user_id = ? and date = ?";
+        String sql1 = "select started_working from work_hours where user_id = ? and date = ?";
+        String sql2 = "select finished_working from work_hours where user_id = ? and date = ?";
 
         try {
+            // update finished_working time
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            PreparedStatement preparedStatement1 = this.connection.prepareStatement(sql1);
-            PreparedStatement preparedStatement2 = this.connection.prepareStatement(sql2);
-            preparedStatement1.setInt(1, userId);
-            preparedStatement2.setInt(1, userId);
-
-            int ending = preparedStatement2.executeUpdate();
-            int begining = preparedStatement1.executeUpdate();
-            String todaysWorkHours = String.valueOf(ending - begining);
-
             preparedStatement.setString(1, finishedWorking.toString());
-            preparedStatement.setString(2, todaysWorkHours);
-            preparedStatement.setInt(3, userId);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setDate(3, convertToDateViaSqlDate(date));
             preparedStatement.executeUpdate();
+
+            System.out.println(date);
+            //get started_working time
+            PreparedStatement preparedStatement1 = this.connection.prepareStatement(sql1);
+            preparedStatement1.setInt(1, userId);
+            preparedStatement1.setDate(2, convertToDateViaSqlDate(date));
+            System.out.println(convertToDateViaSqlDate(date));
+            ResultSet rs1 = preparedStatement1.executeQuery();
+
+            String beginning = null;
+            while (rs1.next()) beginning = rs1.getString(1);
+
+            //get finished working time
+            PreparedStatement preparedStatement2 = this.connection.prepareStatement(sql2);
+            preparedStatement2.setInt(1, userId);
+            preparedStatement2.setDate(2, convertToDateViaSqlDate(date));
+            ResultSet rs2 = preparedStatement2.executeQuery();
+            String ending = null;
+            if (rs2.next()) ending = rs2.getString(1);
+
+
+            LocalTime localTimeBeg = LocalTime.parse(beginning);
+            LocalTime localTimeEnd = LocalTime.parse(ending);
+            long todaysWorkHours = (MINUTES.between(localTimeBeg, localTimeEnd) + 1440) % 1440;
+
+
+            // update work_hours
+            PreparedStatement preparedStatementWh = this.connection.prepareStatement(sqlUpdateWorkHours);
+            preparedStatementWh.setString(1, String.valueOf(todaysWorkHours));
+            preparedStatementWh.setInt(2, userId);
+            preparedStatementWh.setDate(3, convertToDateViaSqlDate(date));
+            preparedStatementWh.executeUpdate();
+
+            // close all statements
             preparedStatement.close();
-        } catch (SQLException e) {
+            preparedStatement1.close();
+            preparedStatement2.close();
+            preparedStatementWh.close();
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
     }

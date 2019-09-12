@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.models.Project;
 import sample.models.ProjectDAO;
+import sample.models.User;
 
 import java.io.IOException;
 
@@ -29,8 +30,11 @@ public class SelectProjectController {
     public Project selectedProject;
     private ProjectDAO dao;
 
+    private User registeredEmployee;
 
-    public SelectProjectController() {
+
+    public SelectProjectController(User registeredEmployee) {
+        this.registeredEmployee = registeredEmployee;
         dao = dao.getInst();
         allProjectsObs = FXCollections.observableArrayList(dao.listProjects());
     }
@@ -72,5 +76,9 @@ public class SelectProjectController {
 
     public void setSelectedProject(Project selectedProject) {
         this.selectedProject = selectedProject;
+    }
+
+    public void setRegisteredEmployee(User registeredEmployee) {
+        this.registeredEmployee = registeredEmployee;
     }
 }

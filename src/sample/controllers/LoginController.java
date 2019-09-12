@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,6 +28,7 @@ public class LoginController implements Initializable {
     public TextField txtUsername;
     public PasswordField pwdPassword;
     public Label lblConfirmation;
+    public Button btnLogin;
 
     private String username;
     private String password;
@@ -34,6 +36,7 @@ public class LoginController implements Initializable {
     private User registeredUser = null;
 
     private WorkTimeTracker workTimeTracker = Injector.getWorkTimeTracker();
+
 
     public User getRegisteredUser() {
         return registeredUser;
@@ -44,33 +47,35 @@ public class LoginController implements Initializable {
     }
 
 
+
     public void loginAction(ActionEvent actionEvent) {
         username = txtUsername.getText();
         password = pwdPassword.getText();
 
         if (username.isEmpty() || username == null) {
-            lblConfirmation.setText("Unesite username!");
+            lblConfirmation.setText("Enter your username!");
 
             return;
         } else if (password == null || password.isEmpty()) {
-            lblConfirmation.setText("Unesite password!");
+            lblConfirmation.setText("Enter your password!");
             return;
         }
 
         try {
             User user = workTimeTracker.loginPerson(username,password);
-            lblConfirmation.setText("Uspješno ste prijavljeni!");
+            setRegisteredUser(user);
+            lblConfirmation.setText("You are successfully logged in!");
             Stage stage = (Stage) pwdPassword.getScene().getWindow();
             stage.close();
             setRegisteredUser(user);
             if (user.getIsAdmin() == 1) openAdminPannel();
             else if (user.getIsAdmin() == 0 && user.getIsAdmin() != 1) openEmployeePannel();
         } catch (PersonDoesNotExistException e) {
-            lblConfirmation.setText("User ne postoji!");
+            lblConfirmation.setText("User does not exist!");
             txtUsername.clear();
             pwdPassword.clear();
         } catch (InvalidCredentialException e) {
-            lblConfirmation.setText("Neispravni pristupni podaci, unesite ponovo!");
+            lblConfirmation.setText("Password is not correct, please enter again!"); //TODO sročiti fino na engleskom!
             txtUsername.clear();
             pwdPassword.clear();
         }
@@ -78,14 +83,15 @@ public class LoginController implements Initializable {
     }
 
     private void openEmployeePannel() {
-        User a = registeredUser;//e.getAdminByUsername(enteredUsername);
-        Stage stage = new Stage();
-        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/employee.fxml"));
+        EmployeeController controller = new EmployeeController(getRegisteredUser());
+        loader.setController(controller);
+
+        Parent root;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/employee.fxml"));
+
             root = loader.load();
-            EmployeeController controller = loader.getController();
-            controller.setRegisteredEmployee(a);
+            Stage stage = new Stage();
             stage.setTitle("Employee panel");
             stage.setResizable(false);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
@@ -117,6 +123,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        btnLogin.setDefaultButton(true);
     }
 }
