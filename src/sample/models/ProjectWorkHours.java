@@ -14,6 +14,10 @@ public class ProjectWorkHours extends WorkHours {
         this.projectId = projectId;
     }
 
+    public ProjectWorkHours() {
+
+    }
+
     public Project getProjectId() {
         return projectId;
     }

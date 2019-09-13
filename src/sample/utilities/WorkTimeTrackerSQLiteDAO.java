@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import org.sqlite.JDBC;
 import sample.models.Position;
 import sample.models.Project;
+import sample.models.ProjectWorkHours;
 import sample.models.User;
 
 import java.io.FileInputStream;
@@ -112,86 +113,7 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         input.close();
 
     }
-/*
 
-    @Override
-    public void addUser(User p) {
-        ResultSet rs = null;
-        try {
-            rs = getNewUserId.executeQuery();
-            int id = 1;
-            if (rs.next()) id = rs.getInt(1);
-            p.setId(id);
-
-            addUser.setInt(1, p.getId());
-            addUser.setString(2, p.getName());
-            addUser.setString(3, p.getSurname());
-            addUser.setString(4, p.getAddress());
-            addUser.setInt(5, p.getPostalNumber());
-            addUser.setString(6, p.getCity());
-            addUser.setString(7, p.getUserName());
-            addUser.setInt(8, p.getIsAdmin());
-            addUser.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (getNewUserId != null) {
-                try {
-                    getNewUserId.close();
-                } catch (SQLException d) {
-                    d.printStackTrace();
-                }
-            }
-            if (addUser != null) {
-                try {
-                    addUser.close();
-                } catch (SQLException d) {
-                    d.printStackTrace();
-                }
-            }
-        }
-
-    }*/
-
-
-   /* public Date convertToDate(LocalDate dateToConvert) {
-        return Date.valueOf(dateToConvert);
-    }
-
-    @Override
-    public void addProject(Project project) {
-        ResultSet rs = null;
-        try {
-            rs = getNewProjectId.executeQuery();
-            int id = 1;
-            if (rs.next()) id = rs.getInt(1);
-            project.setId(id);
-
-            addProject.setInt(1, project.getId());
-            addProject.setString(2, project.getName());
-            addProject.setInt(5, project.getActivity());
-            addProject.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (getNewProjectId != null) {
-                try {
-                    getNewProjectId.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (addProject != null) {
-                try {
-                    addProject.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-*/
     @Override
     public boolean checkIsPasswordValid(String username, String password) {
         PreparedStatement preparedStatement = null;

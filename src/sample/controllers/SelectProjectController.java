@@ -48,12 +48,13 @@ public class SelectProjectController {
     public void startAction(ActionEvent actionEvent) {
         int index = tableList.getSelectionModel().getFocusedIndex();
         selectedProject = (Project) tableList.getItems().get(index);
-        setSelectedProject(selectedProject);
 
         Stage stage = new Stage();
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/startProjectTime.fxml"));
+            StartProjectTimeController controller = new StartProjectTimeController(registeredEmployee, selectedProject);
+            loader.setController(controller);
             root = loader.load();
             stage.setResizable(false);
             stage.setTitle("Start project time");

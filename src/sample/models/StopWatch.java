@@ -21,7 +21,7 @@ public class StopWatch {
         label.setText(millsDigits);
     }
 
-    private void secondsAndMinutes(Label label) {
+    public void secondsAndMinutes(Label label) {
         int limit = 60 * 60;
         if (counter < limit) {
             counter++;
@@ -29,7 +29,11 @@ public class StopWatch {
 
         String stopwatch = String.format("%02d:%02d", counter / 60, counter % 60);
         label.setText(stopwatch);
+    }
+    public int getTime(){
+       String stopwatch = String.format("%02d:%02d", counter / 60, counter % 60);
 
+       return counter;
     }
 
     public void run(Label main, Label mills) {
