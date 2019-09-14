@@ -20,13 +20,9 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label style="-fx-font-family: Quicksand; -fx-font-size: 1.5em; -fx-text-fill: #008000;" text="Welcome" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+        <Label fx:id="lblUsername" alignment="CENTER" style="-fx-font-family: Quicksand; -fx-font-size: 1.5em; -fx-text-fill: #008000;" text="employee!" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="55.0" />
-         </GridPane.margin></Label>
-        <Label fx:id="lblUsername" alignment="CENTER" style="-fx-font-family: Quicksand; -fx-font-size: 1.5em; -fx-text-fill: #008000;" text="employee!" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-         <GridPane.margin>
-            <Insets right="55.0" />
+            <Insets />
          </GridPane.margin></Label>
         <Button fx:id="btnSelectProject" mnemonicParsing="false" onAction="#selectProjectAction" prefWidth="180.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Select project" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <GridPane.margin>

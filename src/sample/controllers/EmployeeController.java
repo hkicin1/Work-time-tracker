@@ -1,6 +1,7 @@
 package sample.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,8 +21,13 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class EmployeeController {
 
     private User registeredEmployee;
-    private Label lblUsername;
+    public Label lblUsername;
     private WorkTimeTrackerSQLiteDAO dao;
+
+    @FXML
+    public void initialize() {
+        lblUsername.setText("Welcome " + registeredEmployee.getName() + "!");
+    }
 
     public EmployeeController(User user) {
         this.registeredEmployee = user;
