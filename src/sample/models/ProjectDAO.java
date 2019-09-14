@@ -63,10 +63,11 @@ public class ProjectDAO {
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
 
             ResultSet rs = getIdProject.executeQuery();
-            int id = 1;
+            int id = 0;
             if (rs.next()) {
                 id = rs.getInt(1);
             }
+            project.setId(id);
             preparedStatement.setInt(1,id);
             preparedStatement.setString(2, project.getName());
             preparedStatement.setInt(3, project.getActivity());

@@ -17,6 +17,7 @@ class ProjectDAOTest {
         list.add(project);
         assertEquals("Bit Alijansa", list.get(list.size() - 1).getName());
         projectDAO.removeProject(project);
+        projectDAO.close();
         projectDAO.removeInstance();
     }
 

@@ -17,6 +17,7 @@ class UserDAOTest {
         List<User> users = dao.listAllUsersFromDatabase();
         assertEquals("Vedran", users.get(users.size() - 1).getName());
         dao.removeUser(user);
+        dao.close();
         dao.removeInstance();
     }
 

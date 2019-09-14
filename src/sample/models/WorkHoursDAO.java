@@ -89,6 +89,7 @@ public class WorkHoursDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
+            workHours.setId(id);
             preparedStatement.setInt(1,id);
             preparedStatement.setInt(2, workHours.getUser().getId());
             preparedStatement.setDate(3, convertToDateViaSqlDate(workHours.getDate()));
@@ -152,7 +153,7 @@ public class WorkHoursDAO {
 
 
     public List<WorkHours> listWorkHours(){
-        String sql = "SELECT * FROM workHours";
+        String sql = "SELECT * FROM work_hours";
         List<WorkHours> workHoursList = new ArrayList<>();
         try {
             ResultSet rs = this.connection.prepareStatement(sql).executeQuery();
@@ -166,12 +167,12 @@ public class WorkHoursDAO {
                 ResultSet rs1 = preparedStatement.executeQuery();
 
                 Position position;
-                PreparedStatement ps = connection.prepareStatement("select * from position were id = ?");
-                preparedStatement.setInt(1, rs1.getInt(7));
-                ResultSet rs2 = preparedStatement.executeQuery();
+                PreparedStatement ps = connection.prepareStatement("select * from position where id = ?");
+                ps.setInt(1, rs1.getInt(7));
+                ResultSet rs2 = ps.executeQuery();
                 position = new Position(rs2.getInt(1), rs2.getString(2));
 
-                user = new User(rs1.getInt(1), rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getInt(5),rs1.getString(6), position,rs1.getString(8),rs1.getString(9),rs1.getInt(10));
+                user = new User(rs1.getInt(1), rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getInt(5),rs1.getString(6), position, rs1.getString(8),rs1.getString(9),rs1.getInt(10));
 
                 workHours.setUser(user);
                 workHours.setDate(rs.getDate(3).toLocalDate());
@@ -179,9 +180,13 @@ public class WorkHoursDAO {
                 workHours.setFinishedWorking(rs.getString(5));
                 workHours.setWorkHours(rs.getString(6));
                 workHoursList.add(workHours);
+                preparedStatement.close();
+                ps.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+
         }
         return workHoursList;
     }

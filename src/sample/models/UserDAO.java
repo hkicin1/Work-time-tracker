@@ -79,7 +79,7 @@ public class UserDAO {
             preparedStatement.setString(8, user.getUserName());
             preparedStatement.setString(9,user.getPassword());
             preparedStatement.setInt(10, user.getIsAdmin());
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
