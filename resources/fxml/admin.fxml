@@ -21,7 +21,7 @@
   </rowConstraints>
    <children>
       <Label alignment="CENTER" style="-fx-font-family: Quicksand; -fx-font-size: 1.5em; -fx-text-fill: #008000;" text="Welcome admin!" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#manageEmployeesAction" prefWidth="180.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Manage employees" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Button fx:id="manageEmployees" mnemonicParsing="false" onAction="#manageEmployeesAction" prefWidth="180.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Manage employees" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Button>

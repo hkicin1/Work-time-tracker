@@ -18,6 +18,9 @@ public class MainController {
 
     public Button btnExit;
 
+    public MainController() {
+    }
+
     public void exitAction(ActionEvent actionEvent) {
         Stage stage = (Stage) btnExit.getScene().getWindow();
         stage.close();
