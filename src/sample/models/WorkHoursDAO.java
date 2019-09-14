@@ -110,7 +110,6 @@ public class WorkHoursDAO {
     public void updateFinishedWorkingTime(LocalTime finishedWorking, int userId, LocalDate date){
         String sql = "update work_hours set finished_working = ? where user_id = ? and date = ?";
         String sqlUpdateWorkHours = "update work_hours set work_hours = (strftime('%H', finished_working) * 3600 + strftime('%M', finished_working) * 60 + strftime('%S', finished_working)) - (strftime('%H', started_working) * 3600 + strftime('%M', started_working) * 60 + strftime('%S', started_working)) where user_id = ? and date = ?";
-        // TODO: work_hours vraća vrijeme samo u sekundama, u izvještaj staviti sati minute sekunde.
         try {
 
             // update finished_working time

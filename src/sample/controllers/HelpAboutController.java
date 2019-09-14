@@ -26,8 +26,6 @@ public class HelpAboutController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if(type == null) return;
         if(type.equals(ContentType.HELP)){
-            //lblHelpAbout.setVisible(false);
-           // helpAdminEmployee.setVisible(true);
             lblHelpAbout.setText("Admin: Click on Admin button. Enter your username and\n" +
                     "password and you will have access to employee work time reports,\n" +
                     "and you will be able to register new employee or delete another.\n\n" +

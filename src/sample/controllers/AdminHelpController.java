@@ -24,8 +24,8 @@ public class AdminHelpController implements Initializable {
                 "new employee, delete another, or edit data.\n\n"
                 + "By clicking on manage project button, you will be able to add \n" +
                 "new project or delete existing.\n\n"
-                + "By clicking on reports button, you will see work hours " +
-                "report.\n");
+                + "By clicking on report buttons, you can see work hours and \n" +
+                "project work hours report.\n");
     }
 
 }

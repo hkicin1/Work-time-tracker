@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.models.Position;
@@ -26,7 +27,8 @@ public class AddEmployeeController {
     public TextField fldName, fldSurname, fldAddress;
     public TextField fldPostalNumber, fldCity;
     public ChoiceBox cbPosition;
-    public TextField fldUsername, fldPassword;
+    public TextField fldUsername;
+    public PasswordField fldPassword;
     private ObservableList<Position> positionListObs;
 
 
@@ -74,7 +76,7 @@ public class AddEmployeeController {
         }
 
         try {
-            URL location = new URL("http://c9.etf.unsa.ba/proba/postanskiBroj.php" + "%s?postanskiBroj=%s" + fldPostalNumber.getText());
+            URL location = new URL("http://c9.etf.unsa.ba/proba/postanskiBroj.php?postanskiBroj=%s" + fldPostalNumber.getText());
             fldPostalNumber.getStyleClass().removeAll("poljeIspravno");
             fldPostalNumber.getStyleClass().removeAll("poljeNijeIspravno");
             fldPostalNumber.getStyleClass().add("poljeSeProvjerava");

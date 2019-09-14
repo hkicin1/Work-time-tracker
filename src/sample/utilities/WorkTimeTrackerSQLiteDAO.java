@@ -21,17 +21,10 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
 
     private Connection connection;
 
-    private PreparedStatement addUser, addProject, addWorkHoursForUser;
 
-    private PreparedStatement getUserById, getUserByUsername, getProjectById, getPositionById;
+    private PreparedStatement getPositionById;
 
-    private PreparedStatement deleteUser, deleteProject;
-
-    private PreparedStatement getNewUserId, getNewProjectId;
-
-    private PreparedStatement getEmployeeWorkTime, getProjectWorkTimeForEmployee;
-
-    private PreparedStatement getAllProjects, getAllEmployees;
+    private PreparedStatement getAllEmployees;
 
 
     public static WorkTimeTrackerSQLiteDAO getInstance() {
@@ -50,29 +43,9 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
            e.printStackTrace();
         }
 
-        try {
-            getUserById = connection.prepareStatement("select * from user where id = ?");
-        }
-        catch (SQLException e) {
-            initializeDatabase();
-        }
 
         try {
-            addUser = connection.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?,?)");
-            addProject = connection.prepareStatement("insert into project values(?,?,?)");
-
-            getUserById = connection.prepareStatement("select * from user where id = ?");
-            getProjectById = connection.prepareStatement("select * from project where id = ?");
             getPositionById = connection.prepareStatement("select * from position where id = ?");
-
-            deleteUser = connection.prepareStatement("delete from user where id = ?");
-            deleteProject = connection.prepareStatement("delete from project where id = ?");
-
-            getNewUserId = connection.prepareStatement("select MAX(id) + 1 FROM user");
-            getNewProjectId = connection.prepareStatement("select MAX(id) + 1 FROM project");
-
-            getUserByUsername = connection.prepareStatement("select * from user where username = ?");
-            getAllProjects = connection.prepareStatement("select * from project");
             getAllEmployees = connection.prepareStatement("select * from user");
         } catch (SQLException e){
             e.printStackTrace();
