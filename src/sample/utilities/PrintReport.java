@@ -12,15 +12,21 @@ import java.util.HashMap;
 public class PrintReport extends JFrame {
     private final String resultsByWorkHours = "/reports/workHoursReport.jrxml";
     private final String resultsByProjectWorkHours = "/reports/projectWorkHoursReport.jrxml";
+    private final String resultsByMyWorkHours = "/reports/myWorkHoursReport.jrxml";
+    private final String resultsByMyProjectWorkHours = "/reports/myProjectWorkHoursReport.jrxml";
 
-    public void showReport(Connection conn, ReportType reportType) throws JRException {
+    public void showReport(Connection conn, ReportType reportType, Integer id) throws JRException {
         String reportSrcFile = getClass().getResource(chooseFilePath(reportType)).getFile();
         String reportsDir = getClass().getResource("/reports/").getFile();
 
         JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
         // Fields for resources path
         HashMap<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("reportsDirPath", reportsDir);
+        if (id != null){
+            parameters.put("USER_ID", id);
+        } else{
+            parameters.put("reportsDirPath", reportsDir);
+        }
         ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
         list.add(parameters);
         JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, conn);
@@ -37,6 +43,10 @@ public class PrintReport extends JFrame {
             return resultsByWorkHours;
         }else if(reportType.equals(ReportType.RESULTS_BY_PROJECT_WORK_HOURS)){
             return resultsByProjectWorkHours;
+        }else if(reportType.equals(ReportType.MY_RESULTS_BY_WORK_HOURS)){
+            return resultsByMyWorkHours;
+        }else if(reportType.equals(ReportType.MY_RESULTS_BY_PROJECT_WORK_HOURS)){
+            return resultsByMyProjectWorkHours;
         }
         return null;
     }

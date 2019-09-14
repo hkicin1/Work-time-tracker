@@ -133,14 +133,6 @@ public class WorkHoursDAO {
         }
     }
 
-    public String secondsToHMS(int seconds) {
-        int hours = seconds / 3600;
-        seconds = seconds - hours * 3600;
-        int minutes = seconds / 60;
-        seconds = seconds - minutes * 60;
-        String time = hours + ":" + minutes + ":" + seconds;
-        return time;
-    }
 
     public void removeWorkingHours(WorkHours workHours){
         try {

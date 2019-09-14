@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
             txtUsername.clear();
             pwdPassword.clear();
         } catch (InvalidCredentialException e) {
-            lblConfirmation.setText("Password is not correct, please enter again!"); //TODO sročiti fino na engleskom!
+            lblConfirmation.setText("Password is not correct, please enter again!");
             txtUsername.clear();
             pwdPassword.clear();
         }

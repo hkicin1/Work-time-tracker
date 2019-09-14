@@ -7,7 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import sample.enums.ReportType;
 import sample.models.User;
+import sample.utilities.PrintReport;
+import sample.utilities.WorkTimeTrackerSQLiteDAO;
 
 import java.io.IOException;
 
@@ -17,6 +21,7 @@ public class EmployeeController {
 
     private User registeredEmployee;
     private Label lblUsername;
+    private WorkTimeTrackerSQLiteDAO dao;
 
     public EmployeeController(User user) {
         this.registeredEmployee = user;
@@ -73,5 +78,26 @@ public class EmployeeController {
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    public void showWorkHoursReportAction(ActionEvent actionEvent) throws JRException {
+
+        dao = new WorkTimeTrackerSQLiteDAO();
+
+        try {
+            new PrintReport().showReport(dao.getConn(), ReportType.MY_RESULTS_BY_WORK_HOURS, registeredEmployee.getId());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    public void showProjectReportAction(ActionEvent actionEvent) {
+        dao = new WorkTimeTrackerSQLiteDAO();
+
+        try {
+            new PrintReport().showReport(dao.getConn(), ReportType.MY_RESULTS_BY_PROJECT_WORK_HOURS, registeredEmployee.getId());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
     }
 }
