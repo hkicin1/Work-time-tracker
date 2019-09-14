@@ -57,7 +57,7 @@ public class UserDAO {
         }
     }
 
-    public boolean addUser(User user){
+    public void addUser(User user){
         String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
 
         try {
@@ -68,6 +68,7 @@ public class UserDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
+            user.setId(id);
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getSurname());
@@ -80,19 +81,16 @@ public class UserDAO {
             preparedStatement.setInt(10, user.getIsAdmin());
             preparedStatement.execute();
             preparedStatement.close();
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
 
     }
     public void removeUser(User user){
         try {
-            if (user != null) {
-                deleteUser.setInt(1, user.getId());
-                deleteUser.executeUpdate();
-            }
+            //String sql = "delete from user where id = ";
+            deleteUser.setInt(1, user.getId());
+            deleteUser.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,6 +108,39 @@ public class UserDAO {
 
     public List<User> listUsers(){
         String sql = "SELECT * FROM user WHERE is_admin = 0";
+        List<User> userList = new ArrayList<>();
+        try {
+            ResultSet rs = this.connection.prepareStatement(sql).executeQuery();
+
+            while (rs.next()){
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setName(rs.getString(2));
+                user.setSurname(rs.getString(3));
+                user.setAddress(rs.getString(4));
+                user.setPostalNumber(rs.getInt(5));
+                user.setCity(rs.getString(6));
+
+                Position position = new Position();
+                PreparedStatement preparedStatement = connection.prepareStatement("select * from position where id = ?");;
+                preparedStatement.setInt(1, rs.getInt(7));
+                ResultSet rs1 = preparedStatement.executeQuery();
+                position = new Position(rs1.getInt(1), rs1.getString(2));
+
+                user.setPosition(position);
+                user.setUserName(rs.getString(8));
+                user.setPassword(rs.getString(9));
+                user.setIsAdmin(rs.getInt(10));
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    public List<User> listAllUsersFromDatabase(){
+        String sql = "SELECT * FROM user";
         List<User> userList = new ArrayList<>();
         try {
             ResultSet rs = this.connection.prepareStatement(sql).executeQuery();

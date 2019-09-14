@@ -24,6 +24,17 @@ public class User {
         this.password = password;
         this.isAdmin = isAdmin;
     }
+    public User(String name, String surname, String address, Integer postalNumber, String city, Position position, String userName, String password, int isAdmin) {
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.postalNumber = postalNumber;
+        this.city = city;
+        this.position = position;
+        this.userName = userName;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
 
     public User() {
     }

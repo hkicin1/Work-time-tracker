@@ -12,21 +12,28 @@ class UserDAOTest {
     @Test
     void addUser() {
         UserDAO dao = UserDAO.getInst();
-        User user = new User();
-        user.setName("Test");
-        user.setSurname("Testic");
-        user.setAddress("Testna 1");
-        user.setPostalNumber(71000);
-        user.setCity("Sarajevo");
-        user.setPosition(new Position(10, "programmer"));
-        user.setUserName("ttestic1");
-        user.setPassword("asdf1234ASDF!#$");
+        User user = new User("Vedran", "Ljubovic", "Neka 123", 71000, "Sarajevo", new Position(1, "owner"), "vljubovic1", "vedran123", 1);
         dao.addUser(user);
-        List<User> users = dao.listUsers();
-        assertEquals("Test", users.get(3).getName());
+        List<User> users = dao.listAllUsersFromDatabase();
+        assertEquals("Vedran", users.get(users.size() - 1).getName());
+        dao.removeUser(user);
+        dao.removeInstance();
     }
 
     @Test
     void removeUser() {
+        UserDAO dao = UserDAO.getInst();
+        User user = new User("Vedran", "Ljubovic", "Neka 123", 71000, "Sarajevo", new Position(1, "owner"), "vljubovic1", "vedran123", 1);
+        dao.addUser(user);
+        List<User> users = dao.listAllUsersFromDatabase();
+        assertEquals(4, users.size());
+        dao.removeUser(user);
+        users = dao.listAllUsersFromDatabase();
+        assertEquals(3, users.size());
+        assertEquals("Haris", users.get(0).getName());
+        assertEquals("Adnan", users.get(1).getName());
+        assertEquals("Fate", users.get(2).getName());
+        dao.close();
+        dao.removeInstance();
     }
 }
