@@ -11,7 +11,7 @@
 		<![CDATA[select u.name AS Name, u.surname AS Surname, strftime('%d-%m-%Y', date(wh.date/1000, 'unixepoch'), '+1 day') AS Date, time(wh.work_hours, 'unixepoch') AS Worked
 from user u, work_hours wh
 where u.id = wh.user_id
-group by wh.date]]>
+order by wh.date]]>
 	</queryString>
 	<field name="Name" class="java.lang.Object">
 		<property name="com.jaspersoft.studio.field.label" value="Name"/>

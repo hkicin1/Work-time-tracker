@@ -12,7 +12,7 @@
 		<![CDATA[Select  u.name AS Name, u.surname AS Surname,  strftime('%d-%m-%Y', date(pwh.date/1000, 'unixepoch'), '+1 day') AS Date, p.name AS Project, time(pwh.work_hours, 'unixepoch') AS Worked
 from user u, project_work_hours pwh, project p
 where u.id = pwh.user_id and p.id = pwh.project_id and u.id = $P{USER_ID}
-group by u.id]]>
+order by pwh.date]]>
 	</queryString>
 	<field name="Name" class="java.lang.Object">
 		<property name="com.jaspersoft.studio.field.label" value="Name"/>

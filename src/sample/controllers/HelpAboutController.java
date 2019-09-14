@@ -32,7 +32,7 @@ public class HelpAboutController implements Initializable {
                     "Employee: Click on Employee button. Enter your username and\n" +
                     "password and you will be able to note your work time.");
         }else {
-            lblHelpAbout.setText("This application trakes employee work time. \n" +
+            lblHelpAbout.setText("This application tracks employee work time. \n" +
                     "                 Author: Haris Kičin\n");
         }
     }
