@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class PrintReport extends JFrame {
     private final String resultsByWorkHours = "/reports/workHoursReport.jrxml";
-    private final String resultsByProjectWorkHours = "/reports/ResultsByCantons.jrxml";
+    private final String resultsByProjectWorkHours = "/reports/projectWorkHoursReport.jrxml";
 
     public void showReport(Connection conn, ReportType reportType) throws JRException {
         String reportSrcFile = getClass().getResource(chooseFilePath(reportType)).getFile();

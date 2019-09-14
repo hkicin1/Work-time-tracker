@@ -83,6 +83,11 @@ public class AdminController {
     }
 
     public void showProjectReportAction(ActionEvent actionEvent) {
-
+        dao = new WorkTimeTrackerSQLiteDAO();
+        try {
+            new PrintReport().showReport(dao.getConn(), ReportType.RESULTS_BY_PROJECT_WORK_HOURS);
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
     }
 }
