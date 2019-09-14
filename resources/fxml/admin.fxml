@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AdminController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AdminController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -17,17 +17,18 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label alignment="CENTER" style="-fx-font-family: Quicksand; -fx-font-size: 1.5em; -fx-text-fill: #008000;" text="Welcome admin!" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-      <Button mnemonicParsing="false" onAction="#manageEmployeesAction" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Manage employees" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <Button mnemonicParsing="false" onAction="#manageEmployeesAction" prefWidth="180.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Manage employees" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Button>
-       <Button fx:id="btnManageProjects" mnemonicParsing="false" onAction="#manageProjectsAction" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Manage projects" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-       <Button mnemonicParsing="false" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Work hours reports" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-
-       <Button mnemonicParsing="false" onAction="#helpAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Help" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+       <Button fx:id="btnManageProjects" mnemonicParsing="false" onAction="#manageProjectsAction" prefWidth="180.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Manage projects" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+       <Button fx:id="btnReport" mnemonicParsing="false" onAction="#showReportAction" prefWidth="180.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Work hours reports" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+       <Button fx:id="btnProjectReport" mnemonicParsing="false" onAction="#showProjectReportAction" prefWidth="180.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Project work hours reports" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+       <Button mnemonicParsing="false" onAction="#helpAction" prefWidth="70.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Help" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
 
    </children>
    <padding>

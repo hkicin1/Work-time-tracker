@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" >
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -21,11 +21,11 @@
     <children>
         <Label style="-fx-font-family: Quicksand; -fx-font-size: 1.5em; -fx-text-fill: #008000;" text="Welcome" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets left="30.0" />
+            <Insets left="37.0" />
          </GridPane.margin></Label>
-        <Label fx:id="lblUsername" alignment="CENTER" style="-fx-font-family: Quicksand; -fx-font-size: 1.5em; -fx-text-fill: #008000;" text="employee" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+        <Label fx:id="lblUsername" alignment="CENTER" style="-fx-font-family: Quicksand; -fx-font-size: 1.5em; -fx-text-fill: #008000;" text="employee!" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
          <GridPane.margin>
-            <Insets right="30.0" />
+            <Insets right="37.0" />
          </GridPane.margin></Label>
         <Button fx:id="btnSelectProject" mnemonicParsing="false" onAction="#selectProjectAction" prefWidth="140.0" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Select project" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <GridPane.margin>

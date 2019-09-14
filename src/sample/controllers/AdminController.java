@@ -4,9 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import sample.enums.ReportType;
 import sample.models.User;
+import sample.utilities.PrintReport;
+import sample.utilities.WorkTimeTrackerSQLiteDAO;
 
 import java.io.IOException;
 
@@ -14,7 +19,11 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class AdminController {
 
+    public Button btnReport;
+    public Button btnProjectReport;
     private User registeredAdmin;
+    private WorkTimeTrackerSQLiteDAO dao;
+
 
     public void setRegisteredAdmin(User a) {
         this.registeredAdmin = a;
@@ -51,7 +60,6 @@ public class AdminController {
         stage.showAndWait();
     }
 
-    //TODO: Work hours report!
 
     public void helpAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
@@ -63,5 +71,18 @@ public class AdminController {
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    public void showReportAction(ActionEvent actionEvent) {
+        dao = new WorkTimeTrackerSQLiteDAO();
+        try {
+            new PrintReport().showReport(dao.getConn(), ReportType.RESULTS_BY_WORK_HOURS);
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    public void showProjectReportAction(ActionEvent actionEvent) {
+
     }
 }

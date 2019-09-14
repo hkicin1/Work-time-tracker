@@ -16,7 +16,7 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class EmployeeController {
 
     private User registeredEmployee;
-    public Label lblUsername;
+    private Label lblUsername;
 
     public EmployeeController(User user) {
         this.registeredEmployee = user;

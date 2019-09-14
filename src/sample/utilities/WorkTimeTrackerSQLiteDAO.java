@@ -39,6 +39,10 @@ public class WorkTimeTrackerSQLiteDAO implements WorkTimeTrackerDAO {
         return instance;
     }
 
+    public Connection getConn(){
+        return connection;
+    }
+
     public WorkTimeTrackerSQLiteDAO(){
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:work_time_tracker.db");
