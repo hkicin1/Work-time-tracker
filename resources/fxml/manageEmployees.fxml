@@ -11,24 +11,29 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10.0" prefHeight="375.0" prefWidth="328.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ManageEmployeesController">
+<GridPane alignment="center" hgap="10.0" prefHeight="375.0" prefWidth="650.0" style="-fx-background-color: white; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ManageEmployeesController">
     <stylesheets>
         <URL value="@/css/style.css" />
     </stylesheets>
     <columnConstraints>
-        <ColumnConstraints maxWidth="200" minWidth="200" />
+        <ColumnConstraints maxWidth="600.0" minWidth="200" prefWidth="650.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
         <RowConstraints />
-        <RowConstraints />
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="300.0" />
         <RowConstraints />
     </rowConstraints>
     <children>
-        <TableView fx:id="tblEmployees" prefHeight="257.0" prefWidth="115.0" BorderPane.alignment="CENTER" GridPane.rowIndex="2">
+        <TableView fx:id="tblEmployees" prefHeight="280.0" prefWidth="650.0" BorderPane.alignment="CENTER" GridPane.rowIndex="2">
+            <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY" /></columnResizePolicy>
             <columns>
-                <TableColumn fx:id="nameCol" prefWidth="88.0" sortable="true" text="Name" />
-                <TableColumn fx:id="surnameCol" minWidth="0.0" prefWidth="95.0" sortable="true" text="Surname" />
+                <TableColumn fx:id="nameCol" prefWidth="50.0" sortable="true" text="Name" />
+                <TableColumn fx:id="surnameCol" minWidth="50.0" prefWidth="95.0" sortable="true" text="Surname" />
+                <TableColumn fx:id="addressCol" minWidth="50.0" prefWidth="95.0" sortable="true" text="Address" />
+                <TableColumn fx:id="postalNumberCol" minWidth="50.0" prefWidth="95.0" sortable="true" text="Postal Number" />
+                <TableColumn fx:id="cityCol" minWidth="50.0" prefWidth="95.0" sortable="true" text="City" />
+                <TableColumn fx:id="positionCol" minWidth="50.0" prefWidth="95.0" sortable="true" text="Position" />
             </columns>
             <BorderPane.margin>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -44,7 +49,7 @@
                 <Button fx:id="btnEnd" mnemonicParsing="true" onAction="#exitAction" style="-fx-color: #008000; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="E_xit" />
             </buttons>
          <GridPane.margin>
-            <Insets bottom="10.0" right="10.0" top="5.0" />
+            <Insets bottom="15.0" right="160.0" top="5.0" />
          </GridPane.margin>
         </ButtonBar>
     </children>

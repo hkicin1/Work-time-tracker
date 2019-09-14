@@ -27,6 +27,10 @@ public class ManageEmployeesController {
 
     public TableColumn nameCol;
     public TableColumn surnameCol;
+    public TableColumn addressCol;
+    public TableColumn postalNumberCol;
+    public TableColumn cityCol;
+    public TableColumn positionCol;
 
     private UserDAO daoUser;
     private ObservableList<User> userListObs;
@@ -46,6 +50,11 @@ public class ManageEmployeesController {
         tblEmployees.setItems(userListObs);
         nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         surnameCol.setCellValueFactory(new PropertyValueFactory("surname"));
+        addressCol.setCellValueFactory(new PropertyValueFactory("address"));
+        postalNumberCol.setCellValueFactory(new PropertyValueFactory("postalNumber"));
+        cityCol.setCellValueFactory(new PropertyValueFactory("city"));
+        positionCol.setCellValueFactory(new PropertyValueFactory("position"));
+
     }
 
 
