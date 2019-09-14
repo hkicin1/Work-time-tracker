@@ -15,6 +15,12 @@ public class ProjectDAO {
         return inst;
     }
 
+    public static void removeInstance() {
+        if (inst == null) return;
+        inst.close();
+        inst = null;
+    }
+
     private static void initialize() {
         inst = new ProjectDAO();
     }
