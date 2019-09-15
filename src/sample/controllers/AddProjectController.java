@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import sample.models.Project;
 import sample.utilities.ProjectDAO;
 
+import java.io.IOException;
+
 public class AddProjectController {
 
     public Button btnEnd;
@@ -33,7 +35,7 @@ public class AddProjectController {
         }
     }
 
-    public void okAction(ActionEvent actionEvent) {
+    public void okAction(ActionEvent actionEvent) throws IOException {
         boolean sveOk;
         sveOk = isEmpty(fldProject);
 
@@ -48,6 +50,7 @@ public class AddProjectController {
         if (cbActivity.isSelected()) project.setActivity(1);
         else project.setActivity(0);
         daoProject.addProject(project);
+        project.writeIntoTextFile();
         Stage stage = (Stage) btnOk.getScene().getWindow();
         stage.close();
     }
