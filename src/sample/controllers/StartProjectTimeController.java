@@ -12,6 +12,7 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.models.*;
+import sample.utilities.WorkHoursDAO;
 
 import java.time.LocalDate;
 

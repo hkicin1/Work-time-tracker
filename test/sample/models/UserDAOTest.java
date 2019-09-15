@@ -1,6 +1,7 @@
 package sample.models;
 
 import org.junit.jupiter.api.Test;
+import sample.utilities.UserDAO;
 
 import java.util.List;
 

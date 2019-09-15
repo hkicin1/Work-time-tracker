@@ -14,7 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.models.Project;
-import sample.models.ProjectDAO;
+import sample.utilities.ProjectDAO;
 import sample.models.User;
 
 import java.io.IOException;

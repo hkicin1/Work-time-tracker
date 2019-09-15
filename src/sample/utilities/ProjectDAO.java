@@ -1,4 +1,6 @@
-package sample.models;
+package sample.utilities;
+
+import sample.models.Project;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -56,7 +58,7 @@ public class ProjectDAO {
     }
 
 
-    public boolean addProject(Project project){
+    public void addProject(Project project){
         String sql = "insert into project values(?,?,?)";
 
         try {
@@ -73,10 +75,8 @@ public class ProjectDAO {
             preparedStatement.setInt(3, project.getActivity());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
 
     }

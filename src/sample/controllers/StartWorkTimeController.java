@@ -1,12 +1,12 @@
 package sample.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import sample.models.User;
 import sample.models.WorkHours;
-import sample.models.WorkHoursDAO;
-import javafx.scene.control.Button;
-
+import sample.utilities.WorkHoursDAO;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -25,6 +25,15 @@ public class StartWorkTimeController {
     public Button btnStart;
     public Button btnEndWorking;
 
+    @FXML
+    public void initialize() throws SQLException {
+        if (dao.checkIfDateExistsInDatabase(LocalDate.now(), registeredEmployee) == true) {
+            lblWorking.setText("You have already worked today, see you tomorrow!");
+            btnStart.setDisable(true);
+            btnEndWorking.setDisable(true);
+        }
+    }
+
     public StartWorkTimeController(User registeredEmployee) {
         this.registeredEmployee = registeredEmployee;
         dao = dao.getInst();
@@ -37,12 +46,6 @@ public class StartWorkTimeController {
     }
 
     public void startWorkingAction(ActionEvent actionEvent) throws ParseException, SQLException {
-        if (dao.checkIfDateExistsInDatabase(LocalDate.now(), registeredEmployee)) {
-            lblWorking.setText("You have already worked today, see you tomorrow!");
-            btnStart.setDisable(true);
-            btnEndWorking.setDisable(true);
-            return;
-        }
         lblWorking.setText("You just started working. Good luck!");
         if (workHours == null) workHours = new WorkHours();
         workHours.setId(dao.getIdWorkHours());
@@ -53,6 +56,7 @@ public class StartWorkTimeController {
         workHours.setWorkHours(null);
         dao.addWorkHours(workHours);
         btnStart.setDisable(true);
+
     }
 
     public void endWorkingAction(ActionEvent actionEvent) {

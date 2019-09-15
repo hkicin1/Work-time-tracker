@@ -1,6 +1,7 @@
-package sample.models;
+package sample.utilities;
 
-import javafx.geometry.Pos;
+import sample.models.Position;
+import sample.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;

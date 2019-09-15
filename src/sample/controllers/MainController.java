@@ -56,9 +56,7 @@ public class MainController {
     public void adminAction(ActionEvent actionEvent) {
         try {
             Stage stage = new Stage();
-            Parent root = null;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-            root = loader.load();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
             stage.setTitle("Login");
             stage.setResizable(false);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

@@ -30,7 +30,7 @@
       </Label>
       <Button fx:id="btnClose1" mnemonicParsing="false" onAction="#exitAction" prefHeight="28.0" prefWidth="46.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <graphic>
-            <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="hlpAbout" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/application-exit.png" />
                </image>

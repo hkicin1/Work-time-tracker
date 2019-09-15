@@ -7,7 +7,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.models.Project;
-import sample.models.ProjectDAO;
+import sample.utilities.ProjectDAO;
 
 public class AddProjectController {
 

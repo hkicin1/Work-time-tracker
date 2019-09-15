@@ -17,11 +17,11 @@ public class WorkTimeTracker {
 
     public User loginPerson(String username, String password) throws PersonDoesNotExistException, InvalidCredentialException {
         User user = dao.getUserByUsername(username);
-        System.out.println(user);
-
         // Check if user exists
         // throw @PersonDoesNotExistException if user is not found
-        if (user == null) throw new PersonDoesNotExistException();
+        if (user == null) {
+            throw new PersonDoesNotExistException();
+        }
 
         // Check is password valid
         // throw @InvalidCredentialException if password is not valid

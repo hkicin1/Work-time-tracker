@@ -1,4 +1,6 @@
-package sample.models;
+package sample.utilities;
+
+import sample.models.*;
 
 import java.sql.*;
 import java.time.LocalDate;

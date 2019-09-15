@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.models.Position;
 import sample.models.User;
-import sample.models.UserDAO;
+import sample.utilities.UserDAO;
 
 import java.io.BufferedReader;
 import java.io.IOException;

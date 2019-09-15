@@ -2,6 +2,8 @@ package sample.models;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
+import sample.utilities.UserDAO;
+import sample.utilities.WorkHoursDAO;
 
 import java.time.LocalDate;
 import java.util.List;
