@@ -16,3 +16,4 @@ Administrator account:
       Password: pass123  </pre>
       
 
+** The Report of the project is in the Bosnian language. **
