@@ -15,5 +15,3 @@ Administrator account:
       <pre>Username: akicin1  
       Password: pass123  </pre>
       
-
-** The Report of the project is in the Bosnian language. **
